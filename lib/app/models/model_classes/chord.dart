@@ -49,6 +49,10 @@ class Chord {
   bool _b_2;
   bool _c_3;
 
+  static Chord empty() {
+    return Chord._();
+  }
+
   static Chord fromSoundKeys(List<SoundKey> soundKeys) {
     Chord chord = Chord._();
     soundKeys.forEach((key) {
@@ -105,6 +109,94 @@ class Chord {
       case SoundKey.c_3:
         this._c_3 = flag;
         break;
+    }
+  }
+
+  void toggleSound(SoundKey soundKey) {
+    switch (soundKey) {
+      case SoundKey.c_1:
+        this._c_1 = !this._c_1;
+        break;
+      case SoundKey.d_1:
+        this._d_1 = !this._d_1;
+        break;
+      case SoundKey.e_1:
+        this._e_1 = !this._e_1;
+        break;
+      case SoundKey.f_1:
+        this._f_1 = !this._f_1;
+        break;
+      case SoundKey.g_1:
+        this._g_1 = !this._g_1;
+        break;
+      case SoundKey.a_1:
+        this._a_1 = !this._a_1;
+        break;
+      case SoundKey.b_1:
+        this._b_1 = !this._b_1;
+        break;
+      case SoundKey.c_2:
+        this._c_2 = !this._c_2;
+        break;
+      case SoundKey.d_2:
+        this._d_2 = !this._d_2;
+        break;
+      case SoundKey.e_2:
+        this._e_2 = !this._e_2;
+        break;
+      case SoundKey.f_2:
+        this._f_2 = !this._f_2;
+        break;
+      case SoundKey.g_2:
+        this._g_2 = !this._g_2;
+        break;
+      case SoundKey.a_2:
+        this._a_2 = !this._a_2;
+        break;
+      case SoundKey.b_2:
+        this._b_2 = !this._b_2;
+        break;
+      case SoundKey.c_3:
+        this._c_3 = !this._c_3;
+        break;
+    }
+  }
+
+  bool get(SoundKey soundKey) {
+    switch (soundKey) {
+      case SoundKey.c_1:
+        return this._c_1;
+      case SoundKey.d_1:
+        return this._d_1;
+      case SoundKey.e_1:
+        return this._e_1;
+      case SoundKey.f_1:
+        return this._f_1;
+      case SoundKey.g_1:
+        return this._g_1;
+      case SoundKey.a_1:
+        return this._a_1;
+      case SoundKey.b_1:
+        return this._b_1;
+      case SoundKey.c_2:
+        return this._c_2;
+      case SoundKey.d_2:
+        return this._d_2;
+      case SoundKey.e_2:
+        return this._e_2;
+      case SoundKey.f_2:
+        return this._f_2;
+      case SoundKey.g_2:
+        return this._g_2;
+      case SoundKey.a_2:
+        return this._a_2;
+        break;
+      case SoundKey.b_2:
+        return this._b_2;
+      case SoundKey.c_3:
+        return this._c_3;
+      default:
+        return null;
     }
   }
 
@@ -200,6 +292,24 @@ class Chord {
       default:
         return false;
     }
+  }
+
+  bool isSetAny() {
+    return this._c_1 ||
+        this._d_1 ||
+        this._e_1 ||
+        this._f_1 ||
+        this._g_1 ||
+        this._a_1 ||
+        this._b_1 ||
+        this._c_2 ||
+        this._d_2 ||
+        this._e_2 ||
+        this._f_2 ||
+        this._g_2 ||
+        this._a_2 ||
+        this._b_2 ||
+        this._c_3;
   }
 
   Chord copyWith({

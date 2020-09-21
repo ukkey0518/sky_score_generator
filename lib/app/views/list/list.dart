@@ -46,7 +46,7 @@ class ListScreen extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => EditScreen(),
+        builder: (_) => EditScreen(scoreId: null),
       ),
     );
   }

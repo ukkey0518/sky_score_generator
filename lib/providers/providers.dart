@@ -1,6 +1,6 @@
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
-import 'package:sky_score_generator/app/models/database_manageer.dart';
+import 'package:sky_score_generator/app/models/database_manager.dart';
 import 'package:sky_score_generator/app/repositories/score_repository.dart';
 import 'package:sky_score_generator/app/views/edit/edit_view_model.dart';
 import 'package:sky_score_generator/app/views/list/list_view_model.dart';

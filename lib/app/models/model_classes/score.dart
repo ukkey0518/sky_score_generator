@@ -60,7 +60,7 @@ class Score {
     return new Score(
       id: map['id'] as String,
       title: map['title'] as String,
-      chords: map['chords'] as List<Chord>,
+      chords: _convertToChordList(map['chords']),
       createdAt:
           DateTimeExtensions.fromTimestamp(map['createdAt'] as Timestamp),
     );
@@ -71,8 +71,32 @@ class Score {
     return {
       'id': this.id,
       'title': this.title,
-      'chords': this.chords,
+      'chords': _convertToChordDataList(this.chords),
       'createdAt': this.createdAt.toTimestamp(),
     } as Map<String, dynamic>;
+  }
+
+  List<Map<String, dynamic>> _convertToChordDataList(List<Chord> chords) {
+    final list = <Map<String, dynamic>>[];
+
+    chords.forEach((chord) {
+      list.add(chord.toMap());
+    });
+    return list;
+  }
+
+  static List<Chord> _convertToChordList(dynamic list) {
+    if (list == null) {
+      return null;
+    }
+    final List<Map> softCasted = (list as List).cast<Map>();
+
+    final List<Chord> resultList = [];
+    softCasted.forEach((data) {
+      final castedData = data.cast<String, dynamic>();
+      resultList.add(Chord.fromMap(castedData));
+    });
+
+    return resultList;
   }
 }
