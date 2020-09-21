@@ -29,19 +29,30 @@ class ListScreen extends StatelessWidget {
         builder: (context, vm, child) {
           return LoadingWrapper(
             isLoading: vm.isLoading,
-            child: ListView.builder(
-              itemCount: vm.scores.length,
-              itemBuilder: (context, index) {
-                final score = vm.scores[index];
-                return ListTile(
-                  title: Text(score.title),
-                  subtitle:
-                      Text(score.createdAt.toFormatStr(DateFormatMode.FULL)),
-                  onTap: () => _playScore(context, score),
-                  onLongPress: () => _deleteConfirm(context, score),
-                );
-              },
-            ),
+            child: vm.scores.isEmpty
+                ? Center(
+                    child: Text(
+                      '右上の + ボタンを押して、楽譜を作成してみましょう！',
+                      style: TextStyle(color: Theme.of(context).primaryColor),
+                    ),
+                  )
+                : ListView.builder(
+                    itemCount: vm.scores.length,
+                    itemBuilder: (context, index) {
+                      final score = vm.scores[index];
+                      return ListTile(
+                        title: Text(
+                          score.title,
+                          style: TextStyle(
+                              color: Theme.of(context).primaryColorDark),
+                        ),
+                        subtitle: Text(
+                            score.createdAt.toFormatStr(DateFormatMode.FULL)),
+                        onTap: () => _playScore(context, score),
+                        onLongPress: () => _deleteConfirm(context, score),
+                      );
+                    },
+                  ),
           );
         },
       ),

@@ -26,35 +26,36 @@ class PlayScreen extends StatelessWidget {
                 ? Container()
                 : Text('${vm.title ?? ''} : ${vm.currentIndex + 1} ページ目'),
           ),
-          body: LoadingWrapper(
-            isLoading: vm.isLoading,
-            child: Row(
-              children: <Widget>[
-                Container(
-                  child: IconButton(
-                    icon: Icon(Icons.arrow_back_ios),
-                    onPressed:
-                        vm.isCanMovePrevious ? () => _previous(context) : null,
+          body: Center(
+            child: LoadingWrapper(
+              isLoading: vm.isLoading,
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    child: IconButton(
+                      icon: Icon(Icons.arrow_back_ios),
+                      onPressed: vm.isCanMovePrevious
+                          ? () => _previous(context)
+                          : null,
+                    ),
                   ),
-                ),
-                Expanded(
-                  child: KeyBoard(
-                    chord: vm.currentChord,
-                    instrument: vm.instrument,
-                    height: double.infinity,
-                    width: double.infinity,
-                    buttonSize: vm.buttonSize,
-                    paddingSize: vm.paddingSize,
-                    onPlayed: (soundKey) => _inputKey(context, soundKey),
+                  Expanded(
+                    child: KeyBoard(
+                      chord: vm.currentChord,
+                      instrument: vm.instrument,
+                      buttonSize: vm.buttonSize,
+                      paddingSize: vm.paddingSize,
+                      onPlayed: (soundKey) => _inputKey(context, soundKey),
+                    ),
                   ),
-                ),
-                Container(
-                  child: IconButton(
-                    icon: Icon(Icons.arrow_forward_ios),
-                    onPressed: vm.isCanMoveNext ? () => _next(context) : null,
+                  Container(
+                    child: IconButton(
+                      icon: Icon(Icons.arrow_forward_ios),
+                      onPressed: vm.isCanMoveNext ? () => _next(context) : null,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         );

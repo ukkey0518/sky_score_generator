@@ -116,12 +116,18 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/ic_launcher.png"
+
 flutter:
 
   uses-material-design: true
 
   assets:
     - assets/sounds/
+    - assets/images/
 
   # fonts:
   #   - family: Schyler

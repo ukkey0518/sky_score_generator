@@ -30,9 +30,9 @@ class EditViewModel extends ChangeNotifier {
 
   String get scoreId => _scoreId;
 
-  String _title;
+  TextEditingController _titleController = TextEditingController();
 
-  String get title => _title;
+  TextEditingController get titleController => _titleController;
 
   List<Chord> _chords = [Chord.empty()];
 
@@ -75,11 +75,11 @@ class EditViewModel extends ChangeNotifier {
 
     final score = await sRep.getScoreById(_scoreId);
     if (score != null) {
-      _title = score.title;
+      _titleController.text = score.title;
       _chords = score.chords;
       _createdAt = score.createdAt;
     } else {
-      _title = '新規楽譜';
+      _titleController.text = '新規楽譜';
       _chords = [Chord.empty()];
     }
 
@@ -87,15 +87,13 @@ class EditViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> saveScore(String title) async {
-    _title = title;
-
+  Future<void> saveScore() async {
     _isLoading = true;
     notifyListeners();
 
     await sRep.saveScore(
       scoreId: _scoreId,
-      title: title,
+      title: titleController.text,
       chords: _chords,
       createdAt: _createdAt,
     );

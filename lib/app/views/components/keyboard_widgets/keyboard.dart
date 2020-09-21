@@ -12,8 +12,6 @@ class KeyBoard extends StatefulWidget {
   KeyBoard({
     @required this.chord,
     @required this.instrument,
-    @required this.height,
-    @required this.width,
     @required this.buttonSize,
     @required this.paddingSize,
     this.onPlayed,
@@ -21,8 +19,6 @@ class KeyBoard extends StatefulWidget {
 
   final Chord chord;
   final Instrument instrument;
-  final double height;
-  final double width;
   final double buttonSize;
   final double paddingSize;
   final ValueChanged<SoundKey> onPlayed;
@@ -35,51 +31,44 @@ class _KeyBoardState extends State<KeyBoard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: widget.height,
-      width: widget.width,
-      child: Center(
-        child: Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  _btnA(context, SoundKey.c_1),
-                  _btnB(context, SoundKey.d_1),
-                  _btnC(context, SoundKey.e_1),
-                  _btnB(context, SoundKey.f_1),
-                  _btnC(context, SoundKey.g_1),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  _btnC(context, SoundKey.a_1),
-                  _btnB(context, SoundKey.b_1),
-                  _btnA(context, SoundKey.c_2),
-                  _btnB(context, SoundKey.d_2),
-                  _btnC(context, SoundKey.e_2),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  _btnC(context, SoundKey.f_2),
-                  _btnB(context, SoundKey.g_2),
-                  _btnC(context, SoundKey.a_2),
-                  _btnB(context, SoundKey.b_2),
-                  _btnA(context, SoundKey.c_3),
-                ],
-              ),
+              _btnA(context, SoundKey.c_1),
+              _btnB(context, SoundKey.d_1),
+              _btnC(context, SoundKey.e_1),
+              _btnB(context, SoundKey.f_1),
+              _btnC(context, SoundKey.g_1),
             ],
           ),
-        ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              _btnC(context, SoundKey.a_1),
+              _btnB(context, SoundKey.b_1),
+              _btnA(context, SoundKey.c_2),
+              _btnB(context, SoundKey.d_2),
+              _btnC(context, SoundKey.e_2),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              _btnC(context, SoundKey.f_2),
+              _btnB(context, SoundKey.g_2),
+              _btnC(context, SoundKey.a_2),
+              _btnB(context, SoundKey.b_2),
+              _btnA(context, SoundKey.c_3),
+            ],
+          ),
+        ],
       ),
     );
   }

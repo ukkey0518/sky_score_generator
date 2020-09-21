@@ -1,8 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sky_score_generator/app/views/components/dialogs/confirm_dialog.dart';
 import 'package:sky_score_generator/app/views/components/keyboard_widgets/keyboard.dart';
 import 'package:sky_score_generator/app/views/components/laoding_indicators/loading_wrapper.dart';
-import 'package:sky_score_generator/app/views/edit/components/title_name_input_dialog.dart';
 import 'package:sky_score_generator/app/views/edit/edit_view_model.dart';
 import 'package:sky_score_generator/data/constants.dart';
 
@@ -18,54 +19,75 @@ class EditScreen extends StatelessWidget {
 
     Future(() => viewModel.getScore());
 
-    return Scaffold(
-      body: Consumer<EditViewModel>(
-        builder: (context, vm, child) {
-          return Scaffold(
-            appBar: AppBar(
-              title: Text('${vm.title} : ${vm.currentIndex + 1} ページ目'),
-              actions: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.save),
-                  onPressed: vm.isCanSave ? () => _saveScore(context) : null,
+    return GestureDetector(
+      onTap: () {
+        WidgetsBinding.instance.focusManager.primaryFocus?.unfocus();
+      },
+      child: Scaffold(
+        body: Consumer<EditViewModel>(
+          builder: (context, vm, child) {
+            return Scaffold(
+              appBar: AppBar(
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    SizedBox(
+                      width: 100,
+                      child: CupertinoTextField(
+                        controller: vm.titleController,
+                        maxLines: 1,
+                      ),
+                    ),
+                    SizedBox(width: 16.0),
+                    Text(': ${vm.currentIndex + 1} ページ目'),
+                  ],
                 ),
-              ],
-            ),
-            body: LoadingWrapper(
-              isLoading: vm.isLoading,
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    child: IconButton(
-                      icon: Icon(Icons.arrow_back_ios),
-                      onPressed: vm.isCanMovePrevious
-                          ? () => _previous(context)
-                          : null,
-                    ),
-                  ),
-                  Expanded(
-                    child: KeyBoard(
-                      chord: vm.currentChord,
-                      instrument: vm.instrument,
-                      height: double.infinity,
-                      width: double.infinity,
-                      buttonSize: vm.buttonSize,
-                      paddingSize: vm.paddingSize,
-                      onPlayed: (soundKey) =>
-                          _toggleSelectButtonState(context, soundKey),
-                    ),
-                  ),
-                  Container(
-                    child: IconButton(
-                      icon: Icon(Icons.arrow_forward_ios),
-                      onPressed: () => _next(context),
-                    ),
+                actions: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.save),
+                    onPressed: vm.isCanSave ? () => _saveScore(context) : null,
                   ),
                 ],
               ),
-            ),
-          );
-        },
+              body: Center(
+                child: SingleChildScrollView(
+                  child: LoadingWrapper(
+                    isLoading: vm.isLoading,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                          child: IconButton(
+                            icon: Icon(Icons.arrow_back_ios),
+                            onPressed: vm.isCanMovePrevious
+                                ? () => _previous(context)
+                                : null,
+                          ),
+                        ),
+                        Expanded(
+                          child: KeyBoard(
+                            chord: vm.currentChord,
+                            instrument: vm.instrument,
+                            buttonSize: vm.buttonSize,
+                            paddingSize: vm.paddingSize,
+                            onPlayed: (soundKey) =>
+                                _toggleSelectButtonState(context, soundKey),
+                          ),
+                        ),
+                        Container(
+                          child: IconButton(
+                            icon: Icon(Icons.arrow_forward_ios),
+                            onPressed: () => _next(context),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
@@ -95,10 +117,13 @@ class EditScreen extends StatelessWidget {
 
     showDialog(
       context: context,
-      builder: (_) => TitleNameSetDialog(
-        onConfirmed: (title) async {
-          await viewModel.saveScore(title);
-          Navigator.pop(context);
+      builder: (_) => ConfirmDialog(
+        title: '保存しますか？',
+        onConfirmed: (isConfirmed) async {
+          if (isConfirmed) {
+            await viewModel.saveScore();
+            Navigator.pop(context);
+          }
         },
       ),
     );
