@@ -7,4 +7,19 @@ class DatabaseManager {
   Future<void> saveScore(Score score) async {
     await _scoreCollection.document(score.id).setData(score.toMap());
   }
+
+  Future<List<Score>> getAllScores() async {
+    final snapshot = await _scoreCollection.getDocuments();
+
+    if (snapshot.documents.isEmpty) {
+      return <Score>[];
+    }
+
+    final scores = <Score>[];
+    snapshot.documents.forEach((document) {
+      scores.add(Score.fromMap(document.data));
+    });
+
+    return scores;
+  }
 }

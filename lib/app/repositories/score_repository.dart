@@ -29,4 +29,8 @@ class ScoreRepository {
 
     await dbManager.saveScore(score);
   }
+
+  Future<List<Score>> getAllScores() async {
+    return await dbManager.getAllScores();
+  }
 }
