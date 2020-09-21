@@ -10,8 +10,7 @@ class ScoreRepository {
   final DatabaseManager dbManager;
 
   Future<Score> getScoreById(String scoreId) async {
-    //TODO:
-    return null;
+    return await dbManager.getScoreById(scoreId);
   }
 
   Future<void> saveScore({

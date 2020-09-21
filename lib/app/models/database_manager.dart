@@ -22,4 +22,14 @@ class DatabaseManager {
 
     return scores;
   }
+
+  Future<Score> getScoreById(String scoreId) async {
+    final document = await _scoreCollection.document(scoreId).get();
+
+    if (document == null || document.data == null) {
+      return null;
+    }
+
+    return Score.fromMap(document.data);
+  }
 }

@@ -47,20 +47,27 @@ class ListScreen extends StatelessWidget {
   }
 
   void _addScore(BuildContext context) {
+    final viewModel = context.read<ListViewModel>();
+
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (_) => EditScreen(scoreId: null),
       ),
-    );
+    ).then((_) {
+      viewModel.getScores();
+    });
   }
 
   void _playScore(BuildContext context, Score score) {
+    final viewModel = context.read<ListViewModel>();
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (_) => PlayScreen(score: score),
       ),
-    );
+    ).then((_) {
+      viewModel.getScores();
+    });
   }
 }
