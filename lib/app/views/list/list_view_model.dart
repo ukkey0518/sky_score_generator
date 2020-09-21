@@ -24,4 +24,15 @@ class ListViewModel extends ChangeNotifier {
     _isLoading = false;
     notifyListeners();
   }
+
+  Future<void> deleteScore(String scoreId) async {
+    _isLoading = true;
+    notifyListeners();
+
+    await sRep.deleteScore(scoreId);
+    _scores = await sRep.getAllScores();
+
+    _isLoading = false;
+    notifyListeners();
+  }
 }

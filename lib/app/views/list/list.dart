@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sky_score_generator/app/models/model_classes/score.dart';
+import 'package:sky_score_generator/app/views/components/dialogs/confirm_dialog.dart';
 import 'package:sky_score_generator/app/views/components/laoding_indicators/loading_wrapper.dart';
 import 'package:sky_score_generator/app/views/edit/edit.dart';
 import 'package:sky_score_generator/app/views/list/list_view_model.dart';
@@ -37,6 +38,7 @@ class ListScreen extends StatelessWidget {
                   subtitle:
                       Text(score.createdAt.toFormatStr(DateFormatMode.FULL)),
                   onTap: () => _playScore(context, score),
+                  onLongPress: () => _deleteConfirm(context, score),
                 );
               },
             ),
@@ -69,5 +71,22 @@ class ListScreen extends StatelessWidget {
     ).then((_) {
       viewModel.getScores();
     });
+  }
+
+  void _deleteConfirm(BuildContext context, Score score) {
+    final viewModel = context.read<ListViewModel>();
+
+    showDialog(
+      context: context,
+      builder: (_) => ConfirmDialog(
+        title: '楽譜を削除しますか？',
+        desc: score.title,
+        onConfirmed: (isConfirmed) {
+          if (isConfirmed) {
+            viewModel.deleteScore(score.id);
+          }
+        },
+      ),
+    );
   }
 }

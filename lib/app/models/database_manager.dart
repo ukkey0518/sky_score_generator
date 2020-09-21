@@ -32,4 +32,8 @@ class DatabaseManager {
 
     return Score.fromMap(document.data);
   }
+
+  Future<void> deleteScore(String scoreId) async {
+    await _scoreCollection.document(scoreId).delete();
+  }
 }

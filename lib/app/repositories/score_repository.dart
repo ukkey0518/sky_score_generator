@@ -32,4 +32,8 @@ class ScoreRepository {
   Future<List<Score>> getAllScores() async {
     return await dbManager.getAllScores();
   }
+
+  Future<void> deleteScore(String scoreId) async {
+    await dbManager.deleteScore(scoreId);
+  }
 }
