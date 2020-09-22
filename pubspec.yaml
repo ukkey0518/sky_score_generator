@@ -112,6 +112,8 @@ dependencies:
 
   audioplayers: ^0.16.1
 
+  mock_data: ^1.2.8
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

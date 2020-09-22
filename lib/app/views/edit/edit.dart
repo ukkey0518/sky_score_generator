@@ -6,6 +6,7 @@ import 'package:sky_score_generator/app/views/components/keyboard_widgets/keyboa
 import 'package:sky_score_generator/app/views/components/laoding_indicators/loading_wrapper.dart';
 import 'package:sky_score_generator/app/views/edit/edit_view_model.dart';
 import 'package:sky_score_generator/data/constants.dart';
+import 'package:sky_score_generator/main.dart';
 
 class EditScreen extends StatelessWidget {
   EditScreen({@required this.scoreId});
@@ -35,6 +36,7 @@ class EditScreen extends StatelessWidget {
                       width: 100,
                       child: CupertinoTextField(
                         controller: vm.titleController,
+                        style: TextStyle(color: Colors.black54),
                         maxLines: 1,
                       ),
                     ),
@@ -49,38 +51,45 @@ class EditScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              body: Center(
-                child: SingleChildScrollView(
-                  child: LoadingWrapper(
-                    isLoading: vm.isLoading,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          child: IconButton(
-                            icon: Icon(Icons.arrow_back_ios),
-                            onPressed: vm.isCanMovePrevious
-                                ? () => _previous(context)
-                                : null,
+              body: Container(
+                decoration: BoxDecoration(image: playBackgroundImage),
+                child: Center(
+                  child: SingleChildScrollView(
+                    child: LoadingWrapper(
+                      isLoading: vm.isLoading,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                            child: IconButton(
+                              icon: Icon(
+                                Icons.arrow_back_ios,
+                              ),
+                              onPressed: vm.isCanMovePrevious
+                                  ? () => _previous(context)
+                                  : null,
+                            ),
                           ),
-                        ),
-                        Expanded(
-                          child: KeyBoard(
-                            chord: vm.currentChord,
-                            instrument: vm.instrument,
-                            buttonSize: vm.buttonSize,
-                            paddingSize: vm.paddingSize,
-                            onPlayed: (soundKey) =>
-                                _toggleSelectButtonState(context, soundKey),
+                          Expanded(
+                            child: KeyBoard(
+                              chord: vm.currentChord,
+                              instrument: vm.instrument,
+                              buttonSize: vm.buttonSize,
+                              paddingSize: vm.paddingSize,
+                              onPlayed: (soundKey) =>
+                                  _toggleSelectButtonState(context, soundKey),
+                            ),
                           ),
-                        ),
-                        Container(
-                          child: IconButton(
-                            icon: Icon(Icons.arrow_forward_ios),
-                            onPressed: () => _next(context),
+                          Container(
+                            child: IconButton(
+                              icon: Icon(
+                                Icons.arrow_forward_ios,
+                              ),
+                              onPressed: () => _next(context),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),

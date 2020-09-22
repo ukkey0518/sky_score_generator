@@ -17,13 +17,10 @@ class ListScreen extends StatelessWidget {
     Future(() => viewModel.getScores());
 
     return Scaffold(
-      appBar: AppBar(
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () => _addScore(context),
-          ),
-        ],
+      appBar: AppBar(),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () => _addScore(context),
       ),
       body: Consumer<ListViewModel>(
         builder: (context, vm, child) {
@@ -32,7 +29,7 @@ class ListScreen extends StatelessWidget {
             child: vm.scores.isEmpty
                 ? Center(
                     child: Text(
-                      '右上の + ボタンを押して、楽譜を作成してみましょう！',
+                      '右下の + ボタンを押して、楽譜を作成してみましょう！',
                       style: TextStyle(color: Theme.of(context).primaryColor),
                     ),
                   )

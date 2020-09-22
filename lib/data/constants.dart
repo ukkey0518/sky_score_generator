@@ -29,3 +29,10 @@ enum DateFormatMode {
   SHORT,
   SHORT_DOW,
 }
+
+enum TimeZone {
+  MORNING,
+  AFTERNOON,
+  EVENING,
+  NIGHT,
+}

@@ -5,6 +5,7 @@ import 'package:sky_score_generator/app/views/components/keyboard_widgets/keyboa
 import 'package:sky_score_generator/app/views/components/laoding_indicators/loading_wrapper.dart';
 import 'package:sky_score_generator/app/views/play/play_view_model.dart';
 import 'package:sky_score_generator/data/constants.dart';
+import 'package:sky_score_generator/main.dart';
 
 class PlayScreen extends StatelessWidget {
   PlayScreen({@required this.score});
@@ -26,35 +27,40 @@ class PlayScreen extends StatelessWidget {
                 ? Container()
                 : Text('${vm.title ?? ''} : ${vm.currentIndex + 1} ページ目'),
           ),
-          body: Center(
-            child: LoadingWrapper(
-              isLoading: vm.isLoading,
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    child: IconButton(
-                      icon: Icon(Icons.arrow_back_ios),
-                      onPressed: vm.isCanMovePrevious
-                          ? () => _previous(context)
-                          : null,
+          body: AnimatedContainer(
+            duration: const Duration(milliseconds: 1000),
+            decoration: BoxDecoration(image: playBackgroundImage),
+            child: Center(
+              child: LoadingWrapper(
+                isLoading: vm.isLoading,
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      child: IconButton(
+                        icon: Icon(Icons.arrow_back_ios),
+                        onPressed: vm.isCanMovePrevious
+                            ? () => _previous(context)
+                            : null,
+                      ),
                     ),
-                  ),
-                  Expanded(
-                    child: KeyBoard(
-                      chord: vm.currentChord,
-                      instrument: vm.instrument,
-                      buttonSize: vm.buttonSize,
-                      paddingSize: vm.paddingSize,
-                      onPlayed: (soundKey) => _inputKey(context, soundKey),
+                    Expanded(
+                      child: KeyBoard(
+                        chord: vm.currentChord,
+                        instrument: vm.instrument,
+                        buttonSize: vm.buttonSize,
+                        paddingSize: vm.paddingSize,
+                        onPlayed: (soundKey) => _inputKey(context, soundKey),
+                      ),
                     ),
-                  ),
-                  Container(
-                    child: IconButton(
-                      icon: Icon(Icons.arrow_forward_ios),
-                      onPressed: vm.isCanMoveNext ? () => _next(context) : null,
+                    Container(
+                      child: IconButton(
+                        icon: Icon(Icons.arrow_forward_ios),
+                        onPressed:
+                            vm.isCanMoveNext ? () => _next(context) : null,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
