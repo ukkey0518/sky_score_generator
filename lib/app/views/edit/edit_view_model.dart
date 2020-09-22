@@ -79,7 +79,7 @@ class EditViewModel extends ChangeNotifier {
       _chords = score.chords;
       _createdAt = score.createdAt;
     } else {
-      _titleController.text = '新規楽譜';
+      _titleController.text = 'New Score';
       _chords = [Chord.empty()];
     }
 

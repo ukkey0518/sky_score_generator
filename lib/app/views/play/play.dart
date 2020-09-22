@@ -25,7 +25,12 @@ class PlayScreen extends StatelessWidget {
           appBar: AppBar(
             title: vm.isLoading
                 ? Container()
-                : Text('${vm.title ?? ''} : ${vm.currentIndex + 1} ページ目'),
+                : Text(
+                    '${vm.title ?? ''} : ${vm.currentIndex + 1} ページ目',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
           ),
           body: AnimatedContainer(
             duration: const Duration(milliseconds: 1000),

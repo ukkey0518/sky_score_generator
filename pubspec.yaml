@@ -131,9 +131,9 @@ flutter:
     - assets/sounds/
     - assets/images/
 
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: marugame
+      fonts:
+        - asset: assets/fonts/marugame.otf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic

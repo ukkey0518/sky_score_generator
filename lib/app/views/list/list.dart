@@ -29,8 +29,10 @@ class ListScreen extends StatelessWidget {
             child: vm.scores.isEmpty
                 ? Center(
                     child: Text(
-                      '右下の + ボタンを押して、楽譜を作成してみましょう！',
-                      style: TextStyle(color: Theme.of(context).primaryColor),
+                      '右下の + ボタンをタップして、作曲してみましょう。',
+                      style: TextStyle(
+                        color: Theme.of(context).primaryColor,
+                      ),
                     ),
                   )
                 : ListView.builder(
@@ -41,7 +43,8 @@ class ListScreen extends StatelessWidget {
                         title: Text(
                           score.title,
                           style: TextStyle(
-                              color: Theme.of(context).primaryColorDark),
+                            color: Theme.of(context).primaryColorDark,
+                          ),
                         ),
                         subtitle: Text(
                             score.createdAt.toFormatStr(DateFormatMode.FULL)),
