@@ -21,7 +21,7 @@ class EditViewModel extends ChangeNotifier {
 
   double get paddingSize => _paddingSize;
 
-  double _buttonSize = 60.0;
+  double _buttonSize = 65.0;
 
   double get buttonSize => _buttonSize;
 
