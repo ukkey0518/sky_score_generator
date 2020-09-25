@@ -1,15 +1,11 @@
-import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:sky_score_generator/app/views/list/list.dart';
 import 'package:sky_score_generator/data/theme_data.dart';
 import 'package:sky_score_generator/data/util_classes/image_path.dart';
-import 'package:sky_score_generator/data/util_classes/sound_path.dart';
 import 'package:sky_score_generator/providers/providers.dart';
 import 'package:sky_score_generator/util/functions/set_default_locale.dart';
-
-final AudioCache audioCache = AudioCache(prefix: 'assets/sounds/');
 
 final String playBgImagePath = ImagePath.getPlayBackgroundImagePath();
 
@@ -37,8 +33,6 @@ class MyApp extends StatelessWidget {
     setDefaultLocale('ja_JP');
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      audioCache.loadAll(SoundPath.fileNames);
-
       if (playBackgroundImage == null) {
         playBackgroundImage = DecorationImage(
           image: AssetImage(playBgImagePath),

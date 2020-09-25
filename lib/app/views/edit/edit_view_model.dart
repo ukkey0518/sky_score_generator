@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:sky_score_generator/app/models/model_classes/chord.dart';
 import 'package:sky_score_generator/app/repositories/score_repository.dart';
 import 'package:sky_score_generator/data/constants.dart';
+import 'package:sky_score_generator/data/util_classes/audio_controller.dart';
+import 'package:sky_score_generator/data/util_classes/sound_path.dart';
 
 class EditViewModel extends ChangeNotifier {
   EditViewModel({@required this.sRep});
@@ -82,6 +84,8 @@ class EditViewModel extends ChangeNotifier {
       _titleController.text = 'New Score';
       _chords = [Chord.empty()];
     }
+
+    await AudioController.loadAll(SoundPath.fileNames);
 
     _isLoading = false;
     notifyListeners();

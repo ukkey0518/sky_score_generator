@@ -1,12 +1,11 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:sky_score_generator/app/models/model_classes/chord.dart';
 import 'package:sky_score_generator/app/views/components/play_button_widgets/play_button_a.dart';
 import 'package:sky_score_generator/app/views/components/play_button_widgets/play_button_b.dart';
 import 'package:sky_score_generator/app/views/components/play_button_widgets/play_button_c.dart';
 import 'package:sky_score_generator/data/constants.dart';
+import 'package:sky_score_generator/data/util_classes/audio_controller.dart';
 import 'package:sky_score_generator/data/util_classes/sound_path.dart';
-import 'package:sky_score_generator/main.dart';
 
 class KeyBoard extends StatefulWidget {
   KeyBoard({
@@ -110,7 +109,7 @@ class _KeyBoardState extends State<KeyBoard> {
   ) async {
     final path = SoundPath.getPath(instrument, soundKey);
 
-    await audioCache.play(path, mode: PlayerMode.LOW_LATENCY, volume: 0.5);
+    await AudioController.play(path);
 
     if (widget.onPlayed != null) {
       widget.onPlayed(soundKey);
