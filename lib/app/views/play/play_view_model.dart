@@ -55,7 +55,12 @@ class PlayViewModel extends ChangeNotifier {
 
   int get currentIndex => _currentIndex;
 
-  Chord get currentChord => _chords[_currentIndex];
+  Chord get currentChord {
+    if (_chords.length == 1 && !_chords[0].isSetAny()) {
+      return Chord.empty();
+    }
+    return _chords[_currentIndex];
+  }
 
   /// 入力
   List<SoundKey> _inputtedKeys = [];
@@ -64,13 +69,15 @@ class PlayViewModel extends ChangeNotifier {
 
   /// 処理
 
+  void setIndex(int index) {
+    _currentIndex = index;
+  }
+
   void setScoreId(String scoreId) {
     _scoreId = scoreId;
   }
 
   Future<void> getScore() async {
-    _currentIndex = 0;
-
     _isFinish = false;
 
     _isLoading = true;
@@ -84,9 +91,6 @@ class PlayViewModel extends ChangeNotifier {
       _title = '';
       _chords = [Chord.empty()];
     }
-
-    print(scoreId);
-    print(score);
 
     _isLoading = false;
     notifyListeners();

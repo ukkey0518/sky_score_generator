@@ -63,7 +63,16 @@ class EditViewModel extends ChangeNotifier {
 
   int get currentIndex => _currentIndex;
 
-  Chord get currentChord => _chords[_currentIndex];
+  Chord get currentChord {
+    if (_chords.length == 1 && !_chords[0].isSetAny()) {
+      return Chord.empty();
+    }
+    return _chords[_currentIndex];
+  }
+
+  void setIndex(int index) {
+    _currentIndex = index;
+  }
 
   void setId(String scoreId) {
     _scoreId = scoreId;
@@ -72,8 +81,6 @@ class EditViewModel extends ChangeNotifier {
   Future<void> getScore() async {
     _isLoading = true;
     notifyListeners();
-
-    _currentIndex = 0;
 
     final score = await sRep.getScoreById(_scoreId);
     if (score != null) {
@@ -125,8 +132,14 @@ class EditViewModel extends ChangeNotifier {
   }
 
   void format() {
+    final emptyChords = _chords.where((chord) => !chord.isSetAny());
+    emptyChords.forEach((chord) {
+      if (_currentIndex > _chords.indexOf(chord)) {
+        _currentIndex--;
+      }
+    });
+
     _chords = _chords.where((chord) => chord.isSetAny()).toList();
-    _currentIndex = _chords.length - 1;
     notifyListeners();
   }
 }

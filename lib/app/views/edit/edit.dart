@@ -9,14 +9,19 @@ import 'package:sky_score_generator/data/constants.dart';
 import 'package:sky_score_generator/main.dart';
 
 class EditScreen extends StatelessWidget {
-  EditScreen({@required this.scoreId});
+  EditScreen({
+    @required this.scoreId,
+    @required this.index,
+  });
 
   final String scoreId;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
     final viewModel = Provider.of<EditViewModel>(context, listen: false);
     viewModel.setId(scoreId);
+    viewModel.setIndex(index);
 
     Future(() => viewModel.getScore());
 
@@ -29,6 +34,10 @@ class EditScreen extends StatelessWidget {
           builder: (context, vm, child) {
             return Scaffold(
               appBar: AppBar(
+                leading: IconButton(
+                  icon: Icon(Icons.arrow_back_ios),
+                  onPressed: () => _finishScreen(context),
+                ),
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -131,10 +140,18 @@ class EditScreen extends StatelessWidget {
         onConfirmed: (isConfirmed) async {
           if (isConfirmed) {
             await viewModel.saveScore();
-            Navigator.pop(context);
+            Navigator.pop(context, viewModel.currentIndex);
           }
         },
       ),
     );
+  }
+
+  void _finishScreen(BuildContext context) {
+    final viewModel = context.read<EditViewModel>();
+    final finalIndex = viewModel.currentIndex;
+    viewModel.setIndex(0);
+
+    Navigator.pop(context, finalIndex);
   }
 }

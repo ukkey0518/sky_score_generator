@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:sky_score_generator/app/models/model_classes/score.dart';
 import 'package:sky_score_generator/app/views/components/keyboard_widgets/keyboard.dart';
 import 'package:sky_score_generator/app/views/components/laoding_indicators/loading_wrapper.dart';
+import 'package:sky_score_generator/app/views/edit/edit.dart';
 import 'package:sky_score_generator/app/views/play/play_view_model.dart';
 import 'package:sky_score_generator/data/constants.dart';
 import 'package:sky_score_generator/main.dart';
@@ -15,6 +16,7 @@ class PlayScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final viewModel = Provider.of<PlayViewModel>(context, listen: false);
+    viewModel.setIndex(0);
     viewModel.setScoreId(score.id);
 
     Future(() => viewModel.getScore());
@@ -31,6 +33,16 @@ class PlayScreen extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
+            actions: [
+              IconButton(
+                icon: Icon(Icons.edit),
+                onPressed: () => _editScore(
+                  context,
+                  vm.scoreId,
+                  vm.currentIndex,
+                ),
+              ),
+            ],
           ),
           body: AnimatedContainer(
             duration: const Duration(milliseconds: 1000),
@@ -93,5 +105,23 @@ class PlayScreen extends StatelessWidget {
     if (viewModel.isFinish) {
       Navigator.pop(context);
     }
+  }
+
+  void _editScore(BuildContext context, String scoreId, int currentIndex) {
+    final viewModel = context.read<PlayViewModel>();
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => EditScreen(
+          scoreId: scoreId,
+          index: currentIndex,
+        ),
+      ),
+    ).then((index) {
+      print(index);
+      viewModel.setIndex(index);
+      viewModel.getScore();
+    });
   }
 }

@@ -65,7 +65,7 @@ class ListScreen extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => EditScreen(scoreId: null),
+        builder: (_) => EditScreen(scoreId: null, index: 0),
       ),
     ).then((_) {
       viewModel.getScores();
