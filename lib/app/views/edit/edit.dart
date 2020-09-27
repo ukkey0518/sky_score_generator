@@ -7,6 +7,7 @@ import 'package:sky_score_generator/app/views/components/loading_widgets/loading
 import 'package:sky_score_generator/app/views/edit/edit_view_model.dart';
 import 'package:sky_score_generator/data/constants.dart';
 import 'package:sky_score_generator/main.dart';
+import 'package:sky_score_generator/util/functions/unfocus_all.dart';
 import 'package:sky_score_generator/util/log/debug_log.dart';
 
 class EditScreen extends StatelessWidget {
@@ -30,9 +31,7 @@ class EditScreen extends StatelessWidget {
     Future(() => viewModel.getScore());
 
     return GestureDetector(
-      onTap: () {
-        WidgetsBinding.instance.focusManager.primaryFocus?.unfocus();
-      },
+      onTap: unFocusAll,
       child: Scaffold(
         body: Consumer<EditViewModel>(
           builder: (context, vm, child) {
