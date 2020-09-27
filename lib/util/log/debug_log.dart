@@ -12,14 +12,14 @@ class DebugLog extends Iterable {
 
   static void add({
     @required DebugLabel label,
+    @required String className,
     @required String name,
     Map<String, dynamic> args,
   }) {
     final labelText = _getLabelText(label);
-    final nameText = name;
     final argsText = _getArgsText(args);
 
-    final logText = '[$labelText] $nameText($argsText)';
+    final logText = '[$labelText: $className] $name($argsText)';
 
     _logs.add(logText);
 
