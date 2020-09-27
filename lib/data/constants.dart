@@ -1,7 +1,9 @@
+/// 楽器
 enum Instrument {
   PIANO,
 }
 
+/// サウンドキー
 enum SoundKey {
   c_1,
   d_1,
@@ -20,7 +22,7 @@ enum SoundKey {
   c_3,
 }
 
-/// DateTimeフォーマットモード
+/// 日付フォーマットモード
 enum DateFormatMode {
   FULL,
   FULL_DOW,
@@ -30,9 +32,19 @@ enum DateFormatMode {
   SHORT_DOW,
 }
 
+/// 時間帯
 enum TimeZone {
   MORNING,
   AFTERNOON,
   EVENING,
   NIGHT,
+}
+
+/// デバッグラベル
+enum DebugLabel {
+  MANAGER,
+  REPOSITORY,
+  VIEW_MODEL,
+  VIEW,
+  PROCESS,
 }

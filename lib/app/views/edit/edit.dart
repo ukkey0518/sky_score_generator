@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sky_score_generator/app/views/components/dialogs/confirm_dialog.dart';
 import 'package:sky_score_generator/app/views/components/keyboard_widgets/keyboard.dart';
-import 'package:sky_score_generator/app/views/components/laoding_indicators/loading_wrapper.dart';
+import 'package:sky_score_generator/app/views/components/loading_widgets/loading_wrapper.dart';
 import 'package:sky_score_generator/app/views/edit/edit_view_model.dart';
 import 'package:sky_score_generator/data/constants.dart';
 import 'package:sky_score_generator/main.dart';

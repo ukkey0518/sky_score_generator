@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:sky_score_generator/app/views/components/loading_widgets/loading_indicator.dart';
 
 class LoadingWrapper extends StatelessWidget {
   LoadingWrapper({@required this.isLoading, @required this.child});
@@ -11,7 +11,7 @@ class LoadingWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     if (isLoading) {
       return Center(
-        child: SpinKitCubeGrid(color: Theme.of(context).primaryColorLight),
+        child: LoadingIndicator(),
       );
     }
     return child;

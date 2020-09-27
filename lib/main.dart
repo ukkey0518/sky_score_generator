@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -13,6 +14,9 @@ DecorationImage playBackgroundImage;
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+
+  Firebase.initializeApp();
+
   //向き指定
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.landscapeLeft,
@@ -41,11 +45,19 @@ class MyApp extends StatelessWidget {
       }
     });
 
-    return MaterialApp(
-      theme: themeData,
-      debugShowCheckedModeBanner: false,
-      // theme: ThemeData.dark(),
-      home: ListScreen(),
+    return FutureBuilder<FirebaseApp>(
+      future: Firebase.initializeApp(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState != ConnectionState.done) {
+          return Container(color: Colors.white);
+        }
+        return MaterialApp(
+          theme: themeData,
+          debugShowCheckedModeBanner: false,
+          // theme: ThemeData.dark(),
+          home: ListScreen(),
+        );
+      },
     );
   }
 }
