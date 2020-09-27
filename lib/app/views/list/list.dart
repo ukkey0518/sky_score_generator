@@ -8,8 +8,12 @@ import 'package:sky_score_generator/app/views/list/list_view_model.dart';
 import 'package:sky_score_generator/app/views/play/play.dart';
 import 'package:sky_score_generator/data/constants.dart';
 import 'package:sky_score_generator/util/extensions/extensions_exporter.dart';
+import 'package:sky_score_generator/util/log/debug_log.dart';
 
 class ListScreen extends StatelessWidget {
+  final DebugLabel _label = DebugLabel.VIEW;
+  final String _className = 'ListScreen';
+
   @override
   Widget build(BuildContext context) {
     final viewModel = Provider.of<ListViewModel>(context, listen: false);
@@ -59,7 +63,14 @@ class ListScreen extends StatelessWidget {
     );
   }
 
+  /// スコアの追加(遷移)
   void _addScore(BuildContext context) {
+    DebugLog.add(
+      label: _label,
+      className: _className,
+      name: '_addScore',
+    );
+
     final viewModel = context.read<ListViewModel>();
 
     Navigator.push(
@@ -72,7 +83,15 @@ class ListScreen extends StatelessWidget {
     });
   }
 
+  /// スコアをプレイ(遷移)
   void _playScore(BuildContext context, Score score) {
+    DebugLog.add(
+      label: _label,
+      className: _className,
+      name: '_playScore',
+      args: {'score': score},
+    );
+
     final viewModel = context.read<ListViewModel>();
     Navigator.push(
       context,
@@ -84,7 +103,15 @@ class ListScreen extends StatelessWidget {
     });
   }
 
+  /// スコアを削除
   void _deleteConfirm(BuildContext context, Score score) {
+    DebugLog.add(
+      label: _label,
+      className: _className,
+      name: '_deleteConfirm',
+      args: {'score': score},
+    );
+
     final viewModel = context.read<ListViewModel>();
 
     showDialog(

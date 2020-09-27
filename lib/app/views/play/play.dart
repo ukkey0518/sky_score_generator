@@ -7,11 +7,15 @@ import 'package:sky_score_generator/app/views/edit/edit.dart';
 import 'package:sky_score_generator/app/views/play/play_view_model.dart';
 import 'package:sky_score_generator/data/constants.dart';
 import 'package:sky_score_generator/main.dart';
+import 'package:sky_score_generator/util/log/debug_log.dart';
 
 class PlayScreen extends StatelessWidget {
   PlayScreen({@required this.score});
 
   final Score score;
+
+  final DebugLabel _label = DebugLabel.VIEW;
+  final String _className = 'ListScreen';
 
   @override
   Widget build(BuildContext context) {
@@ -86,19 +90,15 @@ class PlayScreen extends StatelessWidget {
     );
   }
 
-  void _previous(BuildContext context) {
-    final viewModel = context.read<PlayViewModel>();
-
-    viewModel.previousChord();
-  }
-
-  void _next(BuildContext context) {
-    final viewModel = context.read<PlayViewModel>();
-
-    viewModel.nextChord();
-  }
-
+  /// キーのタップ
   void _inputKey(BuildContext context, SoundKey soundKey) {
+    DebugLog.add(
+      label: _label,
+      className: _className,
+      name: '_inputKey',
+      args: {'soundKey': soundKey},
+    );
+
     final viewModel = context.read<PlayViewModel>();
 
     viewModel.inputKey(soundKey);
@@ -107,7 +107,18 @@ class PlayScreen extends StatelessWidget {
     }
   }
 
+  /// スコアの編集(遷移)
   void _editScore(BuildContext context, String scoreId, int currentIndex) {
+    DebugLog.add(
+      label: _label,
+      className: _className,
+      name: '_editScore',
+      args: {
+        'scoreId': scoreId,
+        'currentIndex': currentIndex,
+      },
+    );
+
     final viewModel = context.read<PlayViewModel>();
 
     Navigator.push(
@@ -123,5 +134,31 @@ class PlayScreen extends StatelessWidget {
       viewModel.setIndex(index);
       viewModel.getScore();
     });
+  }
+
+  /// 前のコードへ
+  void _previous(BuildContext context) {
+    DebugLog.add(
+      label: _label,
+      className: _className,
+      name: '_previous',
+    );
+
+    final viewModel = context.read<PlayViewModel>();
+
+    viewModel.previousChord();
+  }
+
+  /// 次のコードへ
+  void _next(BuildContext context) {
+    DebugLog.add(
+      label: _label,
+      className: _className,
+      name: '_next',
+    );
+
+    final viewModel = context.read<PlayViewModel>();
+
+    viewModel.nextChord();
   }
 }

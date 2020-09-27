@@ -4,9 +4,13 @@ import 'package:sky_score_generator/app/repositories/score_repository.dart';
 import 'package:sky_score_generator/data/constants.dart';
 import 'package:sky_score_generator/data/util_classes/audio_controller.dart';
 import 'package:sky_score_generator/data/util_classes/sound_path.dart';
+import 'package:sky_score_generator/util/log/debug_log.dart';
 
 class EditViewModel extends ChangeNotifier {
   EditViewModel({@required this.sRep});
+
+  final DebugLabel _label = DebugLabel.VIEW_MODEL;
+  final String _className = 'EditViewModel';
 
   final ScoreRepository sRep;
 
@@ -70,15 +74,38 @@ class EditViewModel extends ChangeNotifier {
     return _chords[_currentIndex];
   }
 
+  /// インデックスのセット
   void setIndex(int index) {
+    DebugLog.add(
+      label: _label,
+      className: _className,
+      name: 'setIndex',
+      args: {'index': index},
+    );
+
     _currentIndex = index;
   }
 
-  void setId(String scoreId) {
+  /// スコアIDのセット
+  void setScoreId(String scoreId) {
+    DebugLog.add(
+      label: _label,
+      className: _className,
+      name: 'setScoreId',
+      args: {'scoreId': scoreId},
+    );
+
     _scoreId = scoreId;
   }
 
+  /// スコアの取得
   Future<void> getScore() async {
+    DebugLog.add(
+      label: _label,
+      className: _className,
+      name: 'getScore',
+    );
+
     _isLoading = true;
     notifyListeners();
 
@@ -98,7 +125,14 @@ class EditViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// スコアの保存
   Future<void> saveScore() async {
+    DebugLog.add(
+      label: _label,
+      className: _className,
+      name: 'saveScore',
+    );
+
     _isLoading = true;
     notifyListeners();
 
@@ -113,17 +147,39 @@ class EditViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// キー選択状態の変更
   void toggleSelectButtonState(SoundKey soundKey) {
+    DebugLog.add(
+      label: _label,
+      className: _className,
+      name: 'toggleSelectButtonState',
+      args: {'soundKey': soundKey},
+    );
+
     _chords[_currentIndex].toggleSound(soundKey);
     notifyListeners();
   }
 
+  /// 前のコードへ
   void previousChord() {
+    DebugLog.add(
+      label: _label,
+      className: _className,
+      name: 'previousChord',
+    );
+
     _currentIndex--;
     notifyListeners();
   }
 
+  /// 次のコードへ
   void nextChord() {
+    DebugLog.add(
+      label: _label,
+      className: _className,
+      name: 'nextChord',
+    );
+
     _currentIndex++;
     if (_chords.length <= _currentIndex) {
       _chords.add(Chord.empty());
@@ -131,7 +187,14 @@ class EditViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// 保存前のフォーマット処理(空入力コード間引き)
   void format() {
+    DebugLog.add(
+      label: _label,
+      className: _className,
+      name: 'format',
+    );
+
     final emptyChords = _chords.where((chord) => !chord.isSetAny());
     emptyChords.forEach((chord) {
       if (_currentIndex > _chords.indexOf(chord)) {

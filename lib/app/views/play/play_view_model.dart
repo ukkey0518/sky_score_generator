@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:sky_score_generator/app/models/model_classes/chord.dart';
 import 'package:sky_score_generator/app/repositories/score_repository.dart';
 import 'package:sky_score_generator/data/constants.dart';
+import 'package:sky_score_generator/util/log/debug_log.dart';
 
 class PlayViewModel extends ChangeNotifier {
   PlayViewModel({@required this.sRep});
+
+  final DebugLabel _label = DebugLabel.VIEW_MODEL;
+  final String _className = 'ListViewModel';
 
   final ScoreRepository sRep;
 
@@ -67,17 +71,38 @@ class PlayViewModel extends ChangeNotifier {
 
   List<SoundKey> get inputtedKeys => _inputtedKeys;
 
-  /// 処理
-
-  void setIndex(int index) {
-    _currentIndex = index;
-  }
-
+  /// スコアIDのセット
   void setScoreId(String scoreId) {
+    DebugLog.add(
+      label: _label,
+      className: _className,
+      name: 'setScoreId',
+      args: {'scoreId': scoreId},
+    );
+
     _scoreId = scoreId;
   }
 
+  /// インデックスのセット
+  void setIndex(int index) {
+    DebugLog.add(
+      label: _label,
+      className: _className,
+      name: 'setIndex',
+      args: {'index': index},
+    );
+
+    _currentIndex = index;
+  }
+
+  /// スコアの取得
   Future<void> getScore() async {
+    DebugLog.add(
+      label: _label,
+      className: _className,
+      name: 'getScore',
+    );
+
     _isFinish = false;
 
     _isLoading = true;
@@ -96,7 +121,15 @@ class PlayViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// キーの入力
   void inputKey(SoundKey soundKey) {
+    DebugLog.add(
+      label: _label,
+      className: _className,
+      name: 'inputKey',
+      args: {'soundKey': soundKey},
+    );
+
     _inputtedKeys.add(soundKey);
 
     if (_chords[_currentIndex].allMatch(_inputtedKeys)) {
@@ -113,12 +146,26 @@ class PlayViewModel extends ChangeNotifier {
     }
   }
 
+  /// 前のコードへ
   void previousChord() {
+    DebugLog.add(
+      label: _label,
+      className: _className,
+      name: 'previousChord',
+    );
+
     _currentIndex--;
     notifyListeners();
   }
 
+  /// 次のコードへ
   void nextChord() {
+    DebugLog.add(
+      label: _label,
+      className: _className,
+      name: 'nextChord',
+    );
+
     _currentIndex++;
     notifyListeners();
   }
