@@ -43,7 +43,7 @@ class DatabaseManager {
 
     final document = await _scoreCollection.doc(scoreId).get();
 
-    if (document == null || document.data == null) {
+    if (document == null || document.data() == null) {
       return null;
     }
 
