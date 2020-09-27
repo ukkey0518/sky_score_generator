@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sky_score_generator/app/models/database_manager.dart';
+import 'package:sky_score_generator/app/models/manager/database_manager.dart';
 import 'package:sky_score_generator/app/models/model_classes/chord.dart';
 import 'package:sky_score_generator/app/models/model_classes/score.dart';
 import 'package:uuid/uuid.dart';
