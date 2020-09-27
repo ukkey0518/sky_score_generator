@@ -2,12 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:sky_score_generator/app/models/model_classes/score.dart';
 
 class DatabaseManager {
-  final _scoreCollection = FirebaseFirestore.instance.collection('score');
+  final CollectionReference _scoreCollection =
+      FirebaseFirestore.instance.collection('score');
 
-  Future<void> saveScore(Score score) async {
-    await _scoreCollection.doc(score.id).set(score.toMap());
-  }
-
+  /// [取得] 全スコアの取得
   Future<List<Score>> getAllScores() async {
     final snapshot = await _scoreCollection.get();
 
@@ -23,6 +21,7 @@ class DatabaseManager {
     return scores;
   }
 
+  /// [取得] IDに一致するスコアを取得
   Future<Score> getScoreById(String scoreId) async {
     final document = await _scoreCollection.doc(scoreId).get();
 
@@ -33,6 +32,12 @@ class DatabaseManager {
     return Score.fromMap(document.data());
   }
 
+  /// [保存] スコアの保存
+  Future<void> saveScore(Score score) async {
+    await _scoreCollection.doc(score.id).set(score.toMap());
+  }
+
+  /// [削除] スコアの削除
   Future<void> deleteScore(String scoreId) async {
     await _scoreCollection.doc(scoreId).delete();
   }
