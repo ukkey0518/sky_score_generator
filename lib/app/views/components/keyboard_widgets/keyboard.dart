@@ -29,6 +29,8 @@ class KeyBoard extends StatefulWidget {
 class _KeyBoardState extends State<KeyBoard> {
   @override
   Widget build(BuildContext context) {
+    print(widget.chord);
+
     return Container(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -79,7 +81,7 @@ class _KeyBoardState extends State<KeyBoard> {
     return PlayButtonA(
       buttonSize: widget.buttonSize,
       paddingSize: widget.paddingSize,
-      isSelected: widget.chord.isEnabled(soundKey),
+      isSelected: widget.chord.checkEnabled(soundKey),
       onPressed: () => _playSound(context, widget.instrument, soundKey),
     );
   }
@@ -88,7 +90,7 @@ class _KeyBoardState extends State<KeyBoard> {
     return PlayButtonB(
       buttonSize: widget.buttonSize,
       paddingSize: widget.paddingSize,
-      isSelected: widget.chord.isEnabled(soundKey),
+      isSelected: widget.chord.checkEnabled(soundKey),
       onPressed: () => _playSound(context, widget.instrument, soundKey),
     );
   }
@@ -97,7 +99,7 @@ class _KeyBoardState extends State<KeyBoard> {
     return PlayButtonC(
       buttonSize: widget.buttonSize,
       paddingSize: widget.paddingSize,
-      isSelected: widget.chord.isEnabled(soundKey),
+      isSelected: widget.chord.checkEnabled(soundKey),
       onPressed: () => _playSound(context, widget.instrument, soundKey),
     );
   }

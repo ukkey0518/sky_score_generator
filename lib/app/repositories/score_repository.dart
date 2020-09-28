@@ -52,7 +52,7 @@ class ScoreRepository {
     final score = Score(
       id: scoreId ?? Uuid().v1(),
       title: title,
-      chords: chords,
+      chord: chords,
       createdAt: createdAt ?? DateTime.now(),
     );
 

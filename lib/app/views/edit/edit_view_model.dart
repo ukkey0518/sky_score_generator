@@ -58,8 +58,8 @@ class EditViewModel extends ChangeNotifier {
       return false;
     }
 
-    final formattedChords = _chords.where((chord) => chord.isSetAny()).toList();
-    final isAllEmpty = formattedChords.every((chord) => !chord.isSetAny());
+    final formattedChords = _chords.where((chord) => !chord.isEmpty()).toList();
+    final isAllEmpty = formattedChords.every((chord) => chord.isEmpty());
     final isFewCodes = formattedChords.length < 3;
 
     return !(isAllEmpty || isFewCodes);
@@ -68,7 +68,7 @@ class EditViewModel extends ChangeNotifier {
   int get currentIndex => _currentIndex;
 
   Chord get currentChord {
-    if (_chords.length == 1 && !_chords[0].isSetAny()) {
+    if (_chords.length == 1 && _chords[0].isEmpty()) {
       return Chord.empty();
     }
     return _chords[_currentIndex];
@@ -112,10 +112,11 @@ class EditViewModel extends ChangeNotifier {
     final score = await sRep.getScoreById(_scoreId);
     if (score != null) {
       _titleController.text = score.title;
-      _chords = score.chords;
       _createdAt = score.createdAt;
+      _chords = score.chord;
     } else {
       _titleController.text = 'New Score';
+      _createdAt = null;
       _chords = [Chord.empty()];
     }
 
@@ -156,7 +157,7 @@ class EditViewModel extends ChangeNotifier {
       args: {'soundKey': soundKey},
     );
 
-    _chords[_currentIndex].toggleSound(soundKey);
+    _chords[_currentIndex].toggleState(soundKey);
     notifyListeners();
   }
 
@@ -195,14 +196,18 @@ class EditViewModel extends ChangeNotifier {
       name: 'format',
     );
 
-    final emptyChords = _chords.where((chord) => !chord.isSetAny());
+    final emptyChords = _chords.where((chord) => chord.isEmpty());
+
+    int subtractIndex = 0;
     emptyChords.forEach((chord) {
       if (_currentIndex > _chords.indexOf(chord)) {
-        _currentIndex--;
+        subtractIndex++;
       }
     });
 
-    _chords = _chords.where((chord) => chord.isSetAny()).toList();
+    _currentIndex -= subtractIndex;
+
+    _chords = _chords.where((chord) => !chord.isEmpty()).toList();
     notifyListeners();
   }
 }

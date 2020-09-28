@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sky_score_generator/app/models/model_classes/chord.dart';
@@ -7,24 +9,24 @@ class Score {
   const Score({
     @required this.id,
     @required this.title,
-    @required this.chords,
+    @required this.chord,
     @required this.createdAt,
   });
 
   final String id;
   final String title;
-  final List<Chord> chords;
+  final List<Chord> chord;
   final DateTime createdAt;
 
   Score copyWith({
     String id,
     String title,
-    List<Chord> chords,
+    List<Chord> chord,
     DateTime createdAt,
   }) {
     if ((id == null || identical(id, this.id)) &&
         (title == null || identical(title, this.title)) &&
-        (chords == null || identical(chords, this.chords)) &&
+        (chord == null || identical(chord, this.chord)) &&
         (createdAt == null || identical(createdAt, this.createdAt))) {
       return this;
     }
@@ -32,14 +34,14 @@ class Score {
     return new Score(
       id: id ?? this.id,
       title: title ?? this.title,
-      chords: chords ?? this.chords,
+      chord: chord ?? this.chord,
       createdAt: createdAt ?? this.createdAt,
     );
   }
 
   @override
   String toString() {
-    return 'Score{id: $id, title: $title, chords: $chords, createdAt: $createdAt}';
+    return 'Score{id: $id, title: $title, chord: $chord, createdAt: $createdAt}';
   }
 
   @override
@@ -49,18 +51,18 @@ class Score {
           runtimeType == other.runtimeType &&
           id == other.id &&
           title == other.title &&
-          chords == other.chords &&
+          chord == other.chord &&
           createdAt == other.createdAt);
 
   @override
   int get hashCode =>
-      id.hashCode ^ title.hashCode ^ chords.hashCode ^ createdAt.hashCode;
+      id.hashCode ^ title.hashCode ^ chord.hashCode ^ createdAt.hashCode;
 
   factory Score.fromMap(Map<String, dynamic> map) {
     return new Score(
       id: map['id'] as String,
       title: map['title'] as String,
-      chords: _convertToChordList(map['chords']),
+      chord: _convertToChordList(map['chord']),
       createdAt:
           DateTimeExtensions.fromTimestamp(map['createdAt'] as Timestamp),
     );
@@ -71,32 +73,44 @@ class Score {
     return {
       'id': this.id,
       'title': this.title,
-      'chords': _convertToChordDataList(this.chords),
+      'chord': _convertToBlob(this.chord),
       'createdAt': this.createdAt.toTimestamp(),
     } as Map<String, dynamic>;
   }
 
-  List<Map<String, dynamic>> _convertToChordDataList(List<Chord> chords) {
-    final list = <Map<String, dynamic>>[];
+//</editor-fold>
 
-    chords.forEach((chord) {
-      list.add(chord.toMap());
-    });
-    return list;
+}
+
+List<Chord> _convertToChordList(dynamic chord) {
+  if (chord == null) {
+    return null;
   }
 
-  static List<Chord> _convertToChordList(dynamic list) {
-    if (list == null) {
-      return null;
-    }
-    final List<Map> softCasted = (list as List).cast<Map>();
+  final Blob blob = chord as Blob;
+  final Uint8List uints = blob.bytes;
 
-    final List<Chord> resultList = [];
-    softCasted.forEach((data) {
-      final castedData = data.cast<String, dynamic>();
-      resultList.add(Chord.fromMap(castedData));
-    });
+  final chordLength = (uints.length / 15).floor();
 
-    return resultList;
+  List<Chord> list = [];
+  for (var i = 0; i < chordLength; i++) {
+    list.add(Chord(Uint8List.fromList(uints.sublist(i * 15, (i + 1) * 15))));
   }
+  return list;
+}
+
+Blob _convertToBlob(List<Chord> chord) {
+  if (chord == null) {
+    return null;
+  }
+
+  final List<int> list = [];
+
+  chord.forEach((chord) {
+    list.addAll(chord.chord);
+  });
+
+  final uint = Uint8List.fromList(list);
+
+  return Blob(uint);
 }

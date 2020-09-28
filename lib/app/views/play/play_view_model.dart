@@ -60,7 +60,7 @@ class PlayViewModel extends ChangeNotifier {
   int get currentIndex => _currentIndex;
 
   Chord get currentChord {
-    if (_chords.length == 1 && !_chords[0].isSetAny()) {
+    if (_chords.length == 1 && _chords[0].isEmpty()) {
       return Chord.empty();
     }
     return _chords[_currentIndex];
@@ -111,11 +111,13 @@ class PlayViewModel extends ChangeNotifier {
     final score = await sRep.getScoreById(_scoreId);
     if (score != null) {
       _title = score.title;
-      _chords = score.chords;
+      _chords = score.chord;
     } else {
       _title = '';
       _chords = [Chord.empty()];
     }
+
+    print(_chords);
 
     _isLoading = false;
     notifyListeners();
@@ -144,6 +146,7 @@ class PlayViewModel extends ChangeNotifier {
         _inputtedKeys.remove(soundKey);
       });
     }
+    print(_inputtedKeys);
   }
 
   /// 前のコードへ
