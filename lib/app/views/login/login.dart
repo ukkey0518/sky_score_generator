@@ -12,15 +12,24 @@ class _LoginScreenState extends State<LoginScreen> {
   Color _shadeColor = Colors.white;
   bool _isEnabledLogin = false;
 
-  final FadeInController _titleFadeController = FadeInController();
-  final FadeInController _tapTextFadeController = FadeInController();
+  FadeInController _titleFadeController = FadeInController();
+  FadeInController _tapTextFadeController = FadeInController();
 
   @override
   void initState() {
     super.initState();
     _shadeColor = Colors.white;
     _isEnabledLogin = false;
-    _startAnimation();
+    _titleFadeController = FadeInController();
+    _tapTextFadeController = FadeInController();
+    Future(_startAnimation);
+  }
+
+  @override
+  void setState(fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
   }
 
   @override
@@ -97,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   // アニメーション
-  void _startAnimation() async {
+  Future<void> _startAnimation() async {
     await Future.delayed(const Duration(milliseconds: 1000));
     setState(() {
       _shadeColor = Colors.white54;
