@@ -10,8 +10,11 @@ class LoadingWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (isLoading) {
-      return Center(
-        child: LoadingIndicator(),
+      return Container(
+        color: Colors.white54,
+        child: Center(
+          child: LoadingIndicator(color: Colors.white, size: 80),
+        ),
       );
     }
     return child;

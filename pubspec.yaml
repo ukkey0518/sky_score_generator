@@ -66,6 +66,7 @@ dependencies:
   ### https://pub.dev/packages/animated_text_kit
   flutter_fadein: ^1.1.1
 
+  auto_animated: ^2.1.0
 
 
   # -- Provider --

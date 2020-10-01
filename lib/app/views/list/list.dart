@@ -1,3 +1,4 @@
+import 'package:auto_animated/auto_animated.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sky_score_generator/app/models/model_classes/score.dart';
@@ -5,14 +6,21 @@ import 'package:sky_score_generator/app/views/components/dialogs/confirm_dialog.
 import 'package:sky_score_generator/app/views/components/loading_widgets/loading_wrapper.dart';
 import 'package:sky_score_generator/app/views/edit/edit.dart';
 import 'package:sky_score_generator/app/views/list/list_view_model.dart';
+import 'package:sky_score_generator/app/views/login/components/score_card.dart';
 import 'package:sky_score_generator/app/views/play/play.dart';
 import 'package:sky_score_generator/data/constants.dart';
-import 'package:sky_score_generator/util/extensions/extensions_exporter.dart';
 import 'package:sky_score_generator/util/log/debug_log.dart';
+import 'package:sky_score_generator/util/routes/fade_route.dart';
 
 class ListScreen extends StatelessWidget {
   final DebugLabel _label = DebugLabel.VIEW;
   final String _className = 'ListScreen';
+
+  final options = LiveOptions(
+    showItemInterval: Duration(milliseconds: 500),
+    showItemDuration: Duration(seconds: 1),
+    visibleFraction: 0.05,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +30,8 @@ class ListScreen extends StatelessWidget {
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: Icon(Icons.add, size: 30),
+        backgroundColor: Colors.blue.withOpacity(0.4),
         onPressed: () => _addScore(context),
       ),
       body: Stack(
@@ -31,46 +40,64 @@ class ListScreen extends StatelessWidget {
             'assets/images/list_bg.JPG',
             fit: BoxFit.cover,
           ),
-          Container(
-            height: double.infinity,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: Colors.white54,
-            ),
-            child: Consumer<ListViewModel>(
-              builder: (context, vm, child) {
-                return LoadingWrapper(
-                  isLoading: vm.isLoading,
-                  child: vm.scores.isEmpty
-                      ? Center(
-                          child: Text(
-                            '右下の + ボタンをタップして、作曲してみましょう。',
-                            style: TextStyle(
-                              color: Theme.of(context).primaryColor,
-                            ),
-                          ),
-                        )
-                      : ListView.builder(
-                          itemCount: vm.scores.length,
-                          itemBuilder: (context, index) {
-                            final score = vm.scores[index];
-                            return ListTile(
-                              title: Text(
-                                score.title,
-                                style: TextStyle(
-                                  color: Theme.of(context).primaryColorDark,
-                                ),
+          Consumer<ListViewModel>(
+            builder: (context, vm, child) {
+              return LoadingWrapper(
+                isLoading: vm.isLoading,
+                child: Container(
+                  height: double.infinity,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.white54,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: vm.scores.isEmpty
+                        ? Center(
+                            child: Text(
+                              '右下の + ボタンをタップして、作曲してみましょう。',
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
                               ),
-                              subtitle: Text(score.createdAt
-                                  .toFormatStr(DateFormatMode.FULL)),
-                              onTap: () => _playScore(context, score),
-                              onLongPress: () => _deleteConfirm(context, score),
-                            );
-                          },
-                        ),
-                );
-              },
-            ),
+                            ),
+                          )
+                        : LiveList.options(
+                            options: options,
+                            itemCount: vm.scores.length,
+                            itemBuilder: (context, index, animation) {
+                              final score = vm.scores[index];
+                              return FadeTransition(
+                                opacity: Tween<double>(
+                                  begin: 0,
+                                  end: 1,
+                                ).animate(animation),
+                                // And slide transition
+                                child: SlideTransition(
+                                  position: Tween<Offset>(
+                                    begin: Offset(0, -0.1),
+                                    end: Offset.zero,
+                                  ).animate(animation),
+                                  // Paste you Widget
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      SizedBox(height: 32.0),
+                                      ScoreCard(
+                                        score: score,
+                                        onTap: () => _playScore(context, score),
+                                        onLongPress: () =>
+                                            _deleteConfirm(context, score),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                  ),
+                ),
+              );
+            },
           ),
         ],
       ),
@@ -89,9 +116,7 @@ class ListScreen extends StatelessWidget {
 
     Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (_) => EditScreen(scoreId: null, index: 0),
-      ),
+      FadeRoute(screen: EditScreen(scoreId: null, index: 0)),
     ).then((_) {
       viewModel.getScores();
     });
@@ -109,9 +134,7 @@ class ListScreen extends StatelessWidget {
     final viewModel = context.read<ListViewModel>();
     Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (_) => PlayScreen(score: score),
-      ),
+      FadeRoute(screen: PlayScreen(score: score)),
     ).then((_) {
       viewModel.getScores();
     });
