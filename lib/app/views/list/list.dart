@@ -21,44 +21,58 @@ class ListScreen extends StatelessWidget {
     Future(() => viewModel.getScores());
 
     return Scaffold(
-      appBar: AppBar(),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () => _addScore(context),
       ),
-      body: Consumer<ListViewModel>(
-        builder: (context, vm, child) {
-          return LoadingWrapper(
-            isLoading: vm.isLoading,
-            child: vm.scores.isEmpty
-                ? Center(
-                    child: Text(
-                      '右下の + ボタンをタップして、作曲してみましょう。',
-                      style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                      ),
-                    ),
-                  )
-                : ListView.builder(
-                    itemCount: vm.scores.length,
-                    itemBuilder: (context, index) {
-                      final score = vm.scores[index];
-                      return ListTile(
-                        title: Text(
-                          score.title,
-                          style: TextStyle(
-                            color: Theme.of(context).primaryColorDark,
+      body: Stack(
+        children: [
+          Image.asset(
+            'assets/images/list_bg.JPG',
+            fit: BoxFit.cover,
+          ),
+          Container(
+            height: double.infinity,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.white54,
+            ),
+            child: Consumer<ListViewModel>(
+              builder: (context, vm, child) {
+                return LoadingWrapper(
+                  isLoading: vm.isLoading,
+                  child: vm.scores.isEmpty
+                      ? Center(
+                          child: Text(
+                            '右下の + ボタンをタップして、作曲してみましょう。',
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                            ),
                           ),
+                        )
+                      : ListView.builder(
+                          itemCount: vm.scores.length,
+                          itemBuilder: (context, index) {
+                            final score = vm.scores[index];
+                            return ListTile(
+                              title: Text(
+                                score.title,
+                                style: TextStyle(
+                                  color: Theme.of(context).primaryColorDark,
+                                ),
+                              ),
+                              subtitle: Text(score.createdAt
+                                  .toFormatStr(DateFormatMode.FULL)),
+                              onTap: () => _playScore(context, score),
+                              onLongPress: () => _deleteConfirm(context, score),
+                            );
+                          },
                         ),
-                        subtitle: Text(
-                            score.createdAt.toFormatStr(DateFormatMode.FULL)),
-                        onTap: () => _playScore(context, score),
-                        onLongPress: () => _deleteConfirm(context, score),
-                      );
-                    },
-                  ),
-          );
-        },
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
