@@ -16,9 +16,9 @@ class ListScreen extends StatelessWidget {
   final DebugLabel _label = DebugLabel.VIEW;
   final String _className = 'ListScreen';
 
-  final options = LiveOptions(
-    showItemInterval: Duration(milliseconds: 500),
-    showItemDuration: Duration(seconds: 1),
+  final _listOptions = LiveOptions(
+    showItemInterval: const Duration(milliseconds: 200),
+    showItemDuration: const Duration(milliseconds: 500),
     visibleFraction: 0.05,
   );
 
@@ -62,7 +62,7 @@ class ListScreen extends StatelessWidget {
                             ),
                           )
                         : LiveList.options(
-                            options: options,
+                            options: _listOptions,
                             itemCount: vm.scores.length,
                             itemBuilder: (context, index, animation) {
                               final score = vm.scores[index];
