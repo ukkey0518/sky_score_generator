@@ -47,9 +47,7 @@ class ListScreen extends StatelessWidget {
                 child: Container(
                   height: double.infinity,
                   width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.white54,
-                  ),
+                  color: Colors.white30,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: vm.scores.isEmpty

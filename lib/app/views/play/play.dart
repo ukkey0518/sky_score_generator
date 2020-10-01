@@ -8,6 +8,7 @@ import 'package:sky_score_generator/app/views/play/play_view_model.dart';
 import 'package:sky_score_generator/data/constants.dart';
 import 'package:sky_score_generator/main.dart';
 import 'package:sky_score_generator/util/log/debug_log.dart';
+import 'package:sky_score_generator/util/routes/fade_route.dart';
 
 class PlayScreen extends StatelessWidget {
   PlayScreen({@required this.score});
@@ -31,103 +32,109 @@ class PlayScreen extends StatelessWidget {
           body: AnimatedContainer(
             duration: const Duration(milliseconds: 1000),
             decoration: BoxDecoration(image: playBackgroundImage),
-            child: Column(
-              children: [
-                Container(
-                  height: 80,
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Row(
-                    children: [
-                      IconButton(
-                        icon: Icon(Icons.home),
-                        onPressed: () => Navigator.of(context).pop(),
-                      ),
-                      const SizedBox(width: 32.0),
-                      Expanded(
-                        child: Container(
-                          padding: EdgeInsets.symmetric(vertical: 8),
-                          decoration: BoxDecoration(
-                            color: Colors.black54,
-                            borderRadius: BorderRadius.circular(8.0),
+            child: LoadingWrapper(
+              isLoading: vm.isLoading,
+              child: Container(
+                color: Colors.white30,
+                child: Column(
+                  children: [
+                    Container(
+                      height: 80,
+                      alignment: Alignment.center,
+                      padding: EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Row(
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.home),
+                            onPressed: () => Navigator.of(context).pop(),
                           ),
-                          child: vm.isLoading
-                              ? Text('', style: TextStyle(fontSize: 18))
-                              : Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      vm.title ?? '',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20.0,
-                                      ),
-                                      overflow: TextOverflow.ellipsis,
-                                      textAlign: TextAlign.center,
+                          const SizedBox(width: 32.0),
+                          Expanded(
+                            child: Container(
+                              padding: EdgeInsets.symmetric(vertical: 8),
+                              decoration: BoxDecoration(
+                                color: Colors.black54,
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              child: vm.isLoading
+                                  ? Text('', style: TextStyle(fontSize: 18))
+                                  : Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          vm.title ?? '',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20.0,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        const SizedBox(width: 16),
+                                        Text(
+                                          '[${vm.currentIndex + 1}]',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20.0,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ],
                                     ),
-                                    const SizedBox(width: 16),
-                                    Text(
-                                      '${vm.currentIndex + 1} ページ目',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 14.0,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ],
-                                ),
-                        ),
+                            ),
+                          ),
+                          const SizedBox(width: 32.0),
+                          IconButton(
+                            icon: Icon(Icons.edit),
+                            onPressed: () => _editScore(
+                              context,
+                              vm.scoreId,
+                              vm.currentIndex,
+                            ),
+                          ),
+                        ],
                       ),
-                      const SizedBox(width: 32.0),
-                      IconButton(
-                        icon: Icon(Icons.edit),
-                        onPressed: () => _editScore(
-                          context,
-                          vm.scoreId,
-                          vm.currentIndex,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 16),
-                Center(
-                  child: LoadingWrapper(
-                    isLoading: vm.isLoading,
-                    child: Row(
-                      children: <Widget>[
-                        Container(
-                          child: IconButton(
-                            icon: Icon(Icons.arrow_back_ios),
-                            onPressed: vm.isCanMovePrevious
-                                ? () => _previous(context)
-                                : null,
-                          ),
-                        ),
-                        Expanded(
-                          child: KeyBoard(
-                            chord: vm.currentChord,
-                            instrument: vm.instrument,
-                            buttonSize: vm.buttonSize,
-                            paddingSize: vm.paddingSize,
-                            onPlayed: (soundKey) =>
-                                _inputKey(context, soundKey),
-                          ),
-                        ),
-                        Container(
-                          child: IconButton(
-                            icon: Icon(Icons.arrow_forward_ios),
-                            onPressed:
-                                vm.isCanMoveNext ? () => _next(context) : null,
-                          ),
-                        ),
-                      ],
                     ),
-                  ),
+                    const SizedBox(height: 16),
+                    Center(
+                      child: Row(
+                        children: <Widget>[
+                          Container(
+                            child: IconButton(
+                              icon: Icon(Icons.arrow_back_ios),
+                              onPressed: vm.isCanMovePrevious
+                                  ? () => _previous(context)
+                                  : null,
+                            ),
+                          ),
+                          Expanded(
+                            child: KeyBoard(
+                              chord: vm.currentChord,
+                              instrument: vm.instrument,
+                              buttonSize: vm.buttonSize,
+                              paddingSize: vm.paddingSize,
+                              onPlayed: (soundKey) =>
+                                  _inputKey(context, soundKey),
+                            ),
+                          ),
+                          Container(
+                            child: IconButton(
+                              icon: Icon(Icons.arrow_forward_ios),
+                              onPressed: vm.isCanMoveNext
+                                  ? () => _next(context)
+                                  : null,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         );
@@ -168,8 +175,8 @@ class PlayScreen extends StatelessWidget {
 
     Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (_) => EditScreen(
+      FadeRoute(
+        screen: EditScreen(
           scoreId: scoreId,
           index: currentIndex,
         ),

@@ -11,9 +11,12 @@ class LoadingWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     if (isLoading) {
       return Container(
-        color: Colors.white54,
+        color: Colors.white30,
         child: Center(
-          child: LoadingIndicator(color: Colors.white, size: 80),
+          child: AspectRatio(
+            aspectRatio: 1,
+            child: LoadingIndicator(color: Colors.white, size: 80),
+          ),
         ),
       );
     }

@@ -36,72 +36,113 @@ class EditScreen extends StatelessWidget {
         body: Consumer<EditViewModel>(
           builder: (context, vm, child) {
             return Scaffold(
-              appBar: AppBar(
-                leading: IconButton(
-                  icon: Icon(Icons.arrow_back_ios),
-                  onPressed: () => _finishScreen(context),
-                ),
-                title: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(
-                      width: 100,
-                      child: CupertinoTextField(
-                        controller: vm.titleController,
-                        style: TextStyle(color: Colors.black54),
-                        maxLines: 1,
-                      ),
-                    ),
-                    SizedBox(width: 16.0),
-                    Text(': ${vm.currentIndex + 1} ページ目'),
-                  ],
-                ),
-                actions: <Widget>[
-                  IconButton(
-                    icon: Icon(Icons.save),
-                    onPressed: vm.isCanSave ? () => _saveScore(context) : null,
-                  ),
-                ],
-              ),
               body: Container(
                 decoration: BoxDecoration(image: playBackgroundImage),
-                child: Center(
-                  child: SingleChildScrollView(
-                    child: LoadingWrapper(
-                      isLoading: vm.isLoading,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Container(
-                            child: IconButton(
-                              icon: Icon(
-                                Icons.arrow_back_ios,
+                child: LoadingWrapper(
+                  isLoading: vm.isLoading,
+                  child: Container(
+                    color: Colors.white30,
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 80,
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Row(
+                            children: [
+                              IconButton(
+                                icon: Icon(Icons.home),
+                                onPressed: () => _finishScreen(context),
                               ),
-                              onPressed: vm.isCanMovePrevious
-                                  ? () => _previous(context)
-                                  : null,
-                            ),
-                          ),
-                          Expanded(
-                            child: KeyBoard(
-                              chord: vm.currentChord,
-                              instrument: vm.instrument,
-                              buttonSize: vm.buttonSize,
-                              paddingSize: vm.paddingSize,
-                              onPlayed: (soundKey) =>
-                                  _toggleSelectButtonState(context, soundKey),
-                            ),
-                          ),
-                          Container(
-                            child: IconButton(
-                              icon: Icon(
-                                Icons.arrow_forward_ios,
+                              const SizedBox(width: 32.0),
+                              Expanded(
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(vertical: 8),
+                                  decoration: BoxDecoration(
+                                    color: Colors.black54,
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  child: vm.isLoading
+                                      ? Text('', style: TextStyle(fontSize: 18))
+                                      : Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            SizedBox(
+                                              width: 100,
+                                              child: CupertinoTextField(
+                                                controller: vm.titleController,
+                                                style: TextStyle(
+                                                    color: Colors.black54),
+                                                maxLines: 1,
+                                              ),
+                                            ),
+                                            const SizedBox(width: 16),
+                                            Text(
+                                              '${vm.currentIndex + 1} ページ目',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 14.0,
+                                              ),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ],
+                                        ),
+                                ),
                               ),
-                              onPressed: () => _next(context),
+                              const SizedBox(width: 32.0),
+                              IconButton(
+                                icon: Icon(Icons.save),
+                                onPressed: vm.isCanSave
+                                    ? () => _saveScore(context)
+                                    : null,
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                        Center(
+                          child: SingleChildScrollView(
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                Container(
+                                  child: IconButton(
+                                    icon: Icon(
+                                      Icons.arrow_back_ios,
+                                    ),
+                                    onPressed: vm.isCanMovePrevious
+                                        ? () => _previous(context)
+                                        : null,
+                                  ),
+                                ),
+                                Expanded(
+                                  child: KeyBoard(
+                                    chord: vm.currentChord,
+                                    instrument: vm.instrument,
+                                    buttonSize: vm.buttonSize,
+                                    paddingSize: vm.paddingSize,
+                                    onPlayed: (soundKey) =>
+                                        _toggleSelectButtonState(
+                                            context, soundKey),
+                                  ),
+                                ),
+                                Container(
+                                  child: IconButton(
+                                    icon: Icon(
+                                      Icons.arrow_forward_ios,
+                                    ),
+                                    onPressed: () => _next(context),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
