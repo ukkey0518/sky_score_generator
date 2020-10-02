@@ -1,0 +1,155 @@
+
+App Thinning Size Report for All Variants of Runner
+
+Variant: Sky楽譜作成-1CAAF0C2-A1FA-41CD-B597-FA1F5D1B7AFB.ipa
+Supported variant descriptors: [device: iPhone11,8, os-version: 12.0]
+App + On Demand Resources size: 17.8 MB compressed, 43.4 MB uncompressed
+App size: 17.8 MB compressed, 43.4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Sky楽譜作成-2CDC2380-36B4-4A7C-BED7-E0466D95EBD4.ipa
+Supported variant descriptors: [device: iPad11,4, os-version: 12.2], [device: iPad11,1, os-version: 12.2], [device: iPad7,3, os-version: 12.2], [device: iPad7,1, os-version: 12.2], [device: iPad8,5, os-version: 12.2], [device: iPad8,8, os-version: 12.2], [device: iPad6,3, os-version: 12.2], [device: iPad6,4, os-version: 12.2], [device: iPad11,2, os-version: 12.2], [device: iPad8,6, os-version: 12.2], [device: iPad11,3, os-version: 12.2], [device: iPad8,3, os-version: 12.2], [device: iPad7,2, os-version: 12.2], [device: iPad8,2, os-version: 12.2], [device: iPad8,4, os-version: 12.2], [device: iPad8,7, os-version: 12.2], [device: iPad8,1, os-version: 12.2], and [device: iPad7,4, os-version: 12.2]
+App + On Demand Resources size: 15.4 MB compressed, 35.9 MB uncompressed
+App size: 15.4 MB compressed, 35.9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Sky楽譜作成-32C554FD-BD42-45D5-9187-D35C43315457.ipa
+Supported variant descriptors: [device: iPhone10,3, os-version: 12.2], [device: iPhone9,2, os-version: 12.2], [device: iPhone10,5, os-version: 12.2], [device: iPhone10,6, os-version: 12.2], [device: iPhone9,4, os-version: 12.2], [device: iPhone11,4, os-version: 12.2], [device: iPhone10,2, os-version: 12.2], [device: iPhone11,6, os-version: 12.2], and [device: iPhone11,2, os-version: 12.2]
+App + On Demand Resources size: 15.4 MB compressed, 35.9 MB uncompressed
+App size: 15.4 MB compressed, 35.9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Sky楽譜作成-4C75B536-C9D4-499F-B827-606944933F12.ipa
+Supported variant descriptors: [device: iPhone10,4, os-version: 12.0], [device: iPhone9,1, os-version: 12.0], [device: iPhone9,3, os-version: 12.0], and [device: iPhone10,1, os-version: 12.0]
+App + On Demand Resources size: 17.8 MB compressed, 43.4 MB uncompressed
+App size: 17.8 MB compressed, 43.4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Sky楽譜作成-571718AF-8ECA-405F-9706-F5D6D6F33E30.ipa
+Supported variant descriptors: [device: iPad7,4, os-version: 12.0], [device: iPad8,3, os-version: 12.0], [device: iPad8,4, os-version: 12.0], [device: iPad8,2, os-version: 12.0], [device: iPad8,1, os-version: 12.0], [device: iPad8,8, os-version: 12.0], [device: iPad7,3, os-version: 12.0], [device: iPad6,4, os-version: 12.0], [device: iPad8,6, os-version: 12.0], [device: iPad8,5, os-version: 12.0], [device: iPad7,1, os-version: 12.0], [device: iPad8,7, os-version: 12.0], [device: iPad7,2, os-version: 12.0], and [device: iPad6,3, os-version: 12.0]
+App + On Demand Resources size: 17.8 MB compressed, 43.4 MB uncompressed
+App size: 17.8 MB compressed, 43.4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Sky楽譜作成-68FD52A7-F7B0-4655-AC42-43E41C008F60.ipa
+Supported variant descriptors: [device: iPad4,9, os-version: 12.2], [device: iPad4,7, os-version: 12.2], [device: iPad4,3, os-version: 12.2], [device: iPad7,5, os-version: 12.2], [device: iPad5,4, os-version: 12.2], [device: iPad6,7, os-version: 12.2], [device: iPad4,1, os-version: 12.2], [device: iPad5,1, os-version: 12.2], [device: iPad6,11, os-version: 12.2], [device: iPad4,4, os-version: 12.2], [device: iPad7,6, os-version: 12.2], [device: iPad4,5, os-version: 12.2], [device: iPad6,8, os-version: 12.2], [device: iPad4,8, os-version: 12.2], [device: iPad4,6, os-version: 12.2], [device: iPad6,12, os-version: 12.2], [device: iPad4,2, os-version: 12.2], [device: iPad5,2, os-version: 12.2], and [device: iPad5,3, os-version: 12.2]
+App + On Demand Resources size: 15.4 MB compressed, 35.9 MB uncompressed
+App size: 15.4 MB compressed, 35.9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Sky楽譜作成-6A19FE3C-9EF5-4328-84EA-6EA98BAC5316.ipa
+Supported variant descriptors: [device: iPod9,1, os-version: 13.0], [device: iPhone8,4, os-version: 14.0], [device: iPhone8,1, os-version: 14.0], [device: iPod9,1, os-version: 14.0], [device: iPhone8,4, os-version: 13.0], and [device: iPhone8,1, os-version: 13.0]
+App + On Demand Resources size: 15.3 MB compressed, 35.8 MB uncompressed
+App size: 15.3 MB compressed, 35.8 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Sky楽譜作成-7A91569E-1B24-4B45-88D8-F89B2C896BC9.ipa
+Supported variant descriptors: [device: iPhone9,3, os-version: 12.2], [device: iPhone10,1, os-version: 12.2], [device: iPhone10,4, os-version: 12.2], and [device: iPhone9,1, os-version: 12.2]
+App + On Demand Resources size: 15.3 MB compressed, 35.8 MB uncompressed
+App size: 15.3 MB compressed, 35.8 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Sky楽譜作成-82A9D7A6-66D8-4B61-B3CF-72C0DCBAC7FE.ipa
+Supported variant descriptors: [device: iPhone7,2, os-version: 12.0], [device: iPod7,1, os-version: 12.0], [device: iPhone6,1, os-version: 12.0], [device: iPhone8,4, os-version: 12.0], [device: iPhone8,1, os-version: 12.0], and [device: iPhone6,2, os-version: 12.0]
+App + On Demand Resources size: 17.8 MB compressed, 43.4 MB uncompressed
+App size: 17.8 MB compressed, 43.4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Sky楽譜作成-854BEA70-357B-4D88-83C0-2C0CE30D61E5.ipa
+Supported variant descriptors: [device: iPhone8,2, os-version: 14.0] and [device: iPhone8,2, os-version: 13.0]
+App + On Demand Resources size: 15.4 MB compressed, 35.8 MB uncompressed
+App size: 15.4 MB compressed, 35.8 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Sky楽譜作成-9573CD71-227C-4866-90B3-68053D182F9E.ipa
+Supported variant descriptors: [device: iPhone11,2, os-version: 14.0], [device: iPhone11,6, os-version: 14.0], [device: iPhone12,3, os-version: 13.0], [device: iPhone12,5, os-version: 14.0], [device: iPhone9,2, os-version: 14.0], [device: iPhone9,2, os-version: 13.0], [device: iPhone10,5, os-version: 14.0], [device: iPhone10,3, os-version: 13.0], [device: iPhone9,4, os-version: 13.0], [device: iPhone11,2, os-version: 13.0], [device: iPhone11,4, os-version: 13.0], [device: iPhone10,6, os-version: 14.0], [device: iPhone11,4, os-version: 14.0], [device: iPhone9,4, os-version: 14.0], [device: iPhone11,6, os-version: 13.0], [device: iPhone12,5, os-version: 13.0], [device: iPhone10,3, os-version: 14.0], [device: iPhone10,5, os-version: 13.0], [device: iPhone10,6, os-version: 13.0], [device: iPhone12,3, os-version: 14.0], [device: iPhone10,2, os-version: 13.0], and [device: iPhone10,2, os-version: 14.0]
+App + On Demand Resources size: 15.4 MB compressed, 35.9 MB uncompressed
+App size: 15.4 MB compressed, 35.9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Sky楽譜作成-976AD631-FC89-4D72-9E3F-307CF51A94F2.ipa
+Supported variant descriptors: [device: iPad6,8, os-version: 14.0], [device: iPad11,6, os-version: 14.0], [device: iPad7,12, os-version: 14.0], [device: iPad5,1, os-version: 14.0], [device: iPad6,7, os-version: 13.0], [device: iPad5,2, os-version: 14.0], [device: iPad5,2, os-version: 13.0], [device: iPad6,12, os-version: 14.0], [device: iPad7,11, os-version: 14.0], [device: iPad11,7, os-version: 14.0], [device: iPad7,6, os-version: 14.0], [device: iPad7,6, os-version: 13.0], [device: iPad5,3, os-version: 14.0], [device: iPad6,12, os-version: 13.0], [device: iPad5,3, os-version: 13.0], [device: iPad7,5, os-version: 14.0], [device: iPad5,4, os-version: 13.0], [device: iPad6,7, os-version: 14.0], [device: iPad6,11, os-version: 13.0], [device: iPad7,5, os-version: 13.0], [device: iPad5,1, os-version: 13.0], [device: iPad6,8, os-version: 13.0], [device: iPad5,4, os-version: 14.0], [device: iPad6,11, os-version: 14.0], [device: iPad7,11, os-version: 13.0], and [device: iPad7,12, os-version: 13.0]
+App + On Demand Resources size: 15.4 MB compressed, 35.9 MB uncompressed
+App size: 15.4 MB compressed, 35.9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Sky楽譜作成-9FB33F94-8EF0-4489-B14D-1328BDECF772.ipa
+Supported variant descriptors: [device: iPhone9,1, os-version: 13.0], [device: iPhone10,1, os-version: 13.0], [device: iPhone10,4, os-version: 14.0], [device: iPhone9,3, os-version: 14.0], [device: iPhone10,1, os-version: 14.0], [device: iPhone9,1, os-version: 14.0], [device: iPhone10,4, os-version: 13.0], [device: iPhone12,8, os-version: 13.0], [device: iPhone9,3, os-version: 13.0], and [device: iPhone12,8, os-version: 14.0]
+App + On Demand Resources size: 15.3 MB compressed, 35.8 MB uncompressed
+App size: 15.3 MB compressed, 35.8 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Sky楽譜作成-AC4C1BD0-F458-4C09-820B-19EF58DF0A3B.ipa
+Supported variant descriptors: [device: iPad6,7, os-version: 12.0], [device: iPad6,8, os-version: 12.0], [device: iPad5,2, os-version: 12.0], [device: iPad5,1, os-version: 12.0], [device: iPad7,5, os-version: 12.0], [device: iPad6,12, os-version: 12.0], [device: iPad4,4, os-version: 12.0], [device: iPad4,5, os-version: 12.0], [device: iPad4,3, os-version: 12.0], [device: iPad5,4, os-version: 12.0], [device: iPad7,6, os-version: 12.0], [device: iPad4,1, os-version: 12.0], [device: iPad4,7, os-version: 12.0], [device: iPad4,2, os-version: 12.0], [device: iPad4,8, os-version: 12.0], [device: iPad5,3, os-version: 12.0], [device: iPad4,6, os-version: 12.0], [device: iPad6,11, os-version: 12.0], and [device: iPad4,9, os-version: 12.0]
+App + On Demand Resources size: 17.8 MB compressed, 43.4 MB uncompressed
+App size: 17.8 MB compressed, 43.4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Sky楽譜作成-B74440AB-83D5-4232-BB92-DAECD74A2A46.ipa
+Supported variant descriptors: [device: iPhone8,2, os-version: 12.0] and [device: iPhone7,1, os-version: 12.0]
+App + On Demand Resources size: 17.8 MB compressed, 43.4 MB uncompressed
+App size: 17.8 MB compressed, 43.4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Sky楽譜作成-BE7D9678-256C-43F1-8B32-FC3D0ED6A9CD.ipa
+Supported variant descriptors: [device: iPad8,1, os-version: 14.0], [device: iPad8,7, os-version: 14.0], [device: iPad7,4, os-version: 13.0], [device: iPad11,3, os-version: 14.0], [device: iPad8,7, os-version: 13.0], [device: iPad8,11, os-version: 14.0], [device: iPad6,3, os-version: 14.0], [device: iPad8,1, os-version: 13.0], [device: iPad11,1, os-version: 14.0], [device: iPad8,6, os-version: 14.0], [device: iPad7,3, os-version: 13.0], [device: iPad8,8, os-version: 13.0], [device: iPad7,4, os-version: 14.0], [device: iPad8,12, os-version: 14.0], [device: iPad8,2, os-version: 14.0], [device: iPad8,4, os-version: 13.0], [device: iPad8,5, os-version: 13.0], [device: iPad11,4, os-version: 14.0], [device: iPad6,3, os-version: 13.0], [device: iPad11,1, os-version: 13.0], [device: iPad11,4, os-version: 13.0], [device: iPad8,9, os-version: 13.0], [device: iPad11,2, os-version: 13.0], [device: iPad8,9, os-version: 14.0], [device: iPad6,4, os-version: 14.0], [device: iPad11,3, os-version: 13.0], [device: iPad8,12, os-version: 13.0], [device: iPad8,2, os-version: 13.0], [device: iPad6,4, os-version: 13.0], [device: iPad8,3, os-version: 14.0], [device: iPad8,5, os-version: 14.0], [device: iPad13,2, os-version: 14.0], [device: iPad11,2, os-version: 14.0], [device: iPad8,10, os-version: 14.0], [device: iPad8,11, os-version: 13.0], [device: iPad7,3, os-version: 14.0], [device: iPad13,1, os-version: 14.0], [device: iPad8,8, os-version: 14.0], [device: iPad8,10, os-version: 13.0], [device: iPad7,2, os-version: 14.0], [device: iPad8,3, os-version: 13.0], [device: iPad7,1, os-version: 13.0], [device: iPad7,2, os-version: 13.0], [device: iPad8,6, os-version: 13.0], [device: iPad8,4, os-version: 14.0], and [device: iPad7,1, os-version: 14.0]
+App + On Demand Resources size: 15.4 MB compressed, 35.9 MB uncompressed
+App size: 15.4 MB compressed, 35.9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Sky楽譜作成-D1707B3E-D893-4600-984B-2FA81D62C249.ipa
+Supported variant descriptors: [device: iPhone8,2, os-version: 12.2] and [device: iPhone7,1, os-version: 12.2]
+App + On Demand Resources size: 15.4 MB compressed, 35.9 MB uncompressed
+App size: 15.4 MB compressed, 35.9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Sky楽譜作成-D1824B16-CA3E-449B-866B-7BE60E48C7B2.ipa
+Supported variant descriptors: [device: iPhone6,2, os-version: 12.2], [device: iPhone8,4, os-version: 12.2], [device: iPod9,1, os-version: 12.2], [device: iPod7,1, os-version: 12.2], [device: iPhone7,2, os-version: 12.2], [device: iPhone8,1, os-version: 12.2], and [device: iPhone6,1, os-version: 12.2]
+App + On Demand Resources size: 15.3 MB compressed, 35.8 MB uncompressed
+App size: 15.3 MB compressed, 35.8 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Sky楽譜作成-D393D163-96C4-4FCF-9AA0-41D8DC4C4A0B.ipa
+Supported variant descriptors: [device: iPhone11,8, os-version: 12.2]
+App + On Demand Resources size: 15.4 MB compressed, 35.9 MB uncompressed
+App size: 15.4 MB compressed, 35.9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Sky楽譜作成-EA39D10B-CAE3-4762-A1E6-6A9CEF0B1F6F.ipa
+Supported variant descriptors: [device: iPhone9,2, os-version: 12.0], [device: iPhone11,4, os-version: 12.0], [device: iPhone10,2, os-version: 12.0], [device: iPhone10,6, os-version: 12.0], [device: iPhone11,2, os-version: 12.0], [device: iPhone11,6, os-version: 12.0], [device: iPhone9,4, os-version: 12.0], [device: iPhone10,5, os-version: 12.0], and [device: iPhone10,3, os-version: 12.0]
+App + On Demand Resources size: 17.8 MB compressed, 43.4 MB uncompressed
+App size: 17.8 MB compressed, 43.4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Sky楽譜作成-F6BAD03A-9088-4CE8-A958-EB9710427FDB.ipa
+Supported variant descriptors: [device: iPhone12,1, os-version: 14.0], [device: iPhone12,1, os-version: 13.0], [device: iPhone11,8, os-version: 14.0], and [device: iPhone11,8, os-version: 13.0]
+App + On Demand Resources size: 15.4 MB compressed, 35.9 MB uncompressed
+App size: 15.4 MB compressed, 35.9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Sky楽譜作成.ipa
+Supported variant descriptors: Universal
+App + On Demand Resources size: 18.1 MB compressed, 43.7 MB uncompressed
+App size: 18.1 MB compressed, 43.7 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
