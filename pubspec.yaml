@@ -66,8 +66,13 @@ dependencies:
   ### https://pub.dev/packages/animated_text_kit
   flutter_fadein: ^1.1.1
 
+  ### フェード表示リスト
+  ### https://pub.dev/packages/auto_animated
   auto_animated: ^2.1.0
 
+  ### 移動可能ウィジェット
+  ### https://pub.dev/packages/reorderables
+  reorderables: ^0.3.2
 
   # -- Provider --
 

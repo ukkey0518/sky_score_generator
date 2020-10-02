@@ -210,4 +210,22 @@ class EditViewModel extends ChangeNotifier {
     _chords = _chords.where((chord) => !chord.isEmpty()).toList();
     notifyListeners();
   }
+
+  /// 並び替えを反映する
+  void onSort({@required int oldIndex, @required int newIndex}) {
+    DebugLog.add(
+      label: _label,
+      className: _className,
+      name: 'onSort',
+      args: {
+        'oldIndex': oldIndex,
+        'newIndex': newIndex,
+      },
+    );
+    final chord = _chords.removeAt(oldIndex);
+    _chords.insert(newIndex, chord);
+
+    _currentIndex = newIndex;
+    notifyListeners();
+  }
 }
