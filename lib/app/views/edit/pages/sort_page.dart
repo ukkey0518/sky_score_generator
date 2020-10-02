@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:reorderables/reorderables.dart';
+import 'package:sky_score_generator/app/views/edit/components/mini_chord_card.dart';
 import 'package:sky_score_generator/app/views/edit/edit_view_model.dart';
 import 'package:sky_score_generator/data/constants.dart';
 import 'package:sky_score_generator/util/log/debug_log.dart';
@@ -23,21 +24,20 @@ class SortPage extends StatelessWidget {
           width: double.infinity,
           child: ReorderableWrap(
             spacing: 8.0,
-            runSpacing: 4.0,
+            runSpacing: 8.0,
             padding: const EdgeInsets.all(8),
             onReorder: (oldIndex, newIndex) =>
                 _onReorder(context, oldIndex, newIndex),
             children: List<Widget>.generate(
               vm.chords.length,
               (index) {
-                return Container(
-                  height: 100,
-                  width: 100,
-                  color: vm.currentIndex == index ? Colors.red : Colors.blue,
-                  child: Text(
-                    '${vm.chords[index].chord}',
-                    overflow: TextOverflow.ellipsis,
-                  ),
+                return MiniChordCard(
+                  number: index + 1,
+                  chord: vm.chords[index],
+                  isCurrent: vm.currentIndex == index,
+                  //TODO
+                  onInsertRight: null,
+                  onTap: null,
                 );
               },
             ),
