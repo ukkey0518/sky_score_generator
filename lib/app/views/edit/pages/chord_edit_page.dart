@@ -17,6 +17,7 @@ class ChordEditPage extends StatelessWidget {
         return LoadingWrapper(
           isLoading: vm.isLoading,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,

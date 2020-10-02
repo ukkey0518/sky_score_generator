@@ -48,6 +48,7 @@ class _EditScreenState extends State<EditScreen> {
     return GestureDetector(
       onTap: unFocusAll,
       child: Scaffold(
+        resizeToAvoidBottomPadding: false,
         floatingActionButton: FloatingActionButton(
           child: Icon(_isChordEditMode ? Entypo.swap : FontAwesome.music),
           backgroundColor: Colors.blue.withOpacity(0.4),
@@ -112,14 +113,11 @@ class _EditScreenState extends State<EditScreen> {
                     },
                   ),
                 ),
+                const SizedBox(height: 8.0),
                 Expanded(
-                  child: Center(
-                    child: SingleChildScrollView(
-                      child: Container(
-                        alignment: Alignment.center,
-                        child: _isChordEditMode ? ChordEditPage() : SortPage(),
-                      ),
-                    ),
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: _isChordEditMode ? ChordEditPage() : SortPage(),
                   ),
                 ),
               ],
