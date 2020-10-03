@@ -36,6 +36,7 @@ class SortPage extends StatelessWidget {
             padding: const EdgeInsets.all(8),
             onReorder: (oldIndex, newIndex) =>
                 _onReorder(context, oldIndex, newIndex),
+            needsLongPressDraggable: false,
             children: List<Widget>.generate(
               vm.chords.length,
               (index) {
@@ -43,7 +44,6 @@ class SortPage extends StatelessWidget {
                   number: index + 1,
                   chord: vm.chords[index],
                   isCurrent: vm.currentIndex == index,
-                  //TODO
                   onInsertRight: () => insertChord(index),
                   onTap: () => onCardSelected(index),
                 );
