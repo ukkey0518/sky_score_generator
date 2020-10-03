@@ -189,7 +189,25 @@ class _EditScreenState extends State<EditScreen> with TickerProviderStateMixin {
     final finalIndex = viewModel.currentIndex;
     viewModel.setIndex(0);
 
-    Navigator.pop(context, finalIndex);
+    if (viewModel.isEdited) {
+      showDialog(
+        context: context,
+        builder: (_) => ConfirmDialog(
+          title: '編集済みの楽譜は\n保存されていません',
+          positiveButtonText: '破棄して戻る',
+          negativeButtonText: '編集を続ける',
+          onConfirmed: (isConfirmed) {
+            if (isConfirmed) {
+              Navigator.pop(context, finalIndex);
+              viewModel.isEdited = false;
+            }
+          },
+        ),
+      );
+    } else {
+      Navigator.pop(context, finalIndex);
+      viewModel.isEdited = false;
+    }
   }
 
   /// カードタップ時

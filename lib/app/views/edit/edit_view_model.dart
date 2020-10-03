@@ -18,6 +18,8 @@ class EditViewModel extends ChangeNotifier {
 
   bool get isLoading => _isLoading;
 
+  bool isEdited = false;
+
   /// 設定
   Instrument _instrument = Instrument.PIANO;
 
@@ -156,6 +158,7 @@ class EditViewModel extends ChangeNotifier {
       name: 'toggleSelectButtonState',
       args: {'soundKey': soundKey},
     );
+    isEdited = true;
 
     _chords[_currentIndex].toggleState(soundKey);
     notifyListeners();
@@ -222,6 +225,9 @@ class EditViewModel extends ChangeNotifier {
         'newIndex': newIndex,
       },
     );
+
+    isEdited = true;
+
     final chord = _chords.removeAt(oldIndex);
     _chords.insert(newIndex, chord);
 
@@ -238,6 +244,8 @@ class EditViewModel extends ChangeNotifier {
       args: {'index': index},
     );
 
+    isEdited = true;
+
     _chords.insert(index + 1, Chord.empty());
     notifyListeners();
   }
@@ -250,6 +258,7 @@ class EditViewModel extends ChangeNotifier {
       name: 'deleteChord',
       args: {'index': index},
     );
+    isEdited = true;
 
     if (_chords.length >= 2) {
       _chords.removeAt(index);
