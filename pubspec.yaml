@@ -78,6 +78,10 @@ dependencies:
   ### https://pub.dev/packages/reorderables
   reorderables: ^0.3.2
 
+  ### ドラッグ可能FAB
+  ### https://pub.dev/packages/draggable_fab
+  draggable_fab: ^0.1.1
+
   # -- Provider --
 
   ### https://pub.dev/packages/provider

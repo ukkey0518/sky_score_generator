@@ -1,4 +1,5 @@
 import 'package:animated_size_and_fade/animated_size_and_fade.dart';
+import 'package:draggable_fab/draggable_fab.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -50,10 +51,12 @@ class _EditScreenState extends State<EditScreen> with TickerProviderStateMixin {
       onTap: unFocusAll,
       child: Scaffold(
         resizeToAvoidBottomPadding: false,
-        floatingActionButton: FloatingActionButton(
-          child: Icon(_isChordEditMode ? Entypo.swap : FontAwesome.music),
-          backgroundColor: Colors.blue.withOpacity(0.4),
-          onPressed: _toggleMode,
+        floatingActionButton: DraggableFab(
+          child: FloatingActionButton(
+            child: Icon(_isChordEditMode ? Entypo.swap : FontAwesome.music),
+            backgroundColor: Colors.blue.withOpacity(0.4),
+            onPressed: _toggleMode,
+          ),
         ),
         body: Container(
           decoration: BoxDecoration(image: playBackgroundImage),
