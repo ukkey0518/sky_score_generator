@@ -7,8 +7,12 @@ import 'package:sky_score_generator/data/constants.dart';
 import 'package:sky_score_generator/util/log/debug_log.dart';
 
 class SortPage extends StatelessWidget {
+  SortPage({@required this.onCardSelected});
+
   static const DebugLabel _label = DebugLabel.VIEW;
   static const String _className = 'SortPage';
+
+  final ValueChanged<int> onCardSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +41,7 @@ class SortPage extends StatelessWidget {
                   isCurrent: vm.currentIndex == index,
                   //TODO
                   onInsertRight: null,
-                  onTap: null,
+                  onTap: () => onCardSelected(index),
                 );
               },
             ),

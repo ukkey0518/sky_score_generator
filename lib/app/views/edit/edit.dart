@@ -115,9 +115,15 @@ class _EditScreenState extends State<EditScreen> {
                 ),
                 const SizedBox(height: 8.0),
                 Expanded(
-                  child: Container(
+                  child: AnimatedContainer(
+                    duration: Duration(seconds: 1),
                     alignment: Alignment.center,
-                    child: _isChordEditMode ? ChordEditPage() : SortPage(),
+                    child: _isChordEditMode
+                        ? ChordEditPage()
+                        : SortPage(
+                            onCardSelected: (index) =>
+                                _onCardSelected(context, index),
+                          ),
                   ),
                 ),
               ],
@@ -173,6 +179,24 @@ class _EditScreenState extends State<EditScreen> {
     viewModel.setIndex(0);
 
     Navigator.pop(context, finalIndex);
+  }
+
+  /// カードタップ時
+  void _onCardSelected(BuildContext context, int index) {
+    DebugLog.add(
+      label: _label,
+      className: _className,
+      name: '_onCardSelected',
+      args: {'index': index},
+    );
+
+    final viewModel = context.read<EditViewModel>();
+
+    viewModel.setIndex(index);
+
+    setState(() {
+      _toggleMode();
+    });
   }
 }
 
