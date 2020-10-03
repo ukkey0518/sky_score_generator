@@ -30,8 +30,6 @@ class SortPage extends StatelessWidget {
             borderRadius: BorderRadius.circular(8.0),
           ),
           alignment: Alignment.center,
-          height: double.infinity,
-          width: double.infinity,
           child: ReorderableWrap(
             spacing: 8.0,
             runSpacing: 8.0,
