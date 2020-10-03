@@ -234,148 +234,17 @@ class _EditScreenState extends State<EditScreen> with TickerProviderStateMixin {
     );
 
     final viewModel = context.read<EditViewModel>();
-    viewModel.deleteChord(index);
+
+    showDialog(
+      context: context,
+      builder: (_) => ConfirmDialog(
+        title: 'このコードを削除しますか？',
+        onConfirmed: (isConfirmed) {
+          if (isConfirmed) {
+            viewModel.deleteChord(index);
+          }
+        },
+      ),
+    );
   }
 }
-
-// class EditScreen extends StatelessWidget {
-//   EditScreen({
-//     @required this.scoreId,
-//     @required this.index,
-//   });
-//
-//   final String scoreId;
-//   final int index;
-//
-//   final DebugLabel _label = DebugLabel.VIEW;
-//   final String _className = 'ListScreen';
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     final viewModel = Provider.of<EditViewModel>(context, listen: false);
-//     viewModel.setScoreId(scoreId);
-//     viewModel.setIndex(index);
-//
-//     Future(() => viewModel.getScore());
-//
-//     return GestureDetector(
-//       onTap: unFocusAll,
-//       child: Scaffold(
-//         body: Container(
-//           decoration: BoxDecoration(image: playBackgroundImage),
-//           child: Container(
-//             color: Colors.white30,
-//             padding: EdgeInsets.all(8.0),
-//             child: Column(
-//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//               children: [
-//                 Container(
-//                   alignment: Alignment.center,
-//                   child: Consumer<EditViewModel>(
-//                     builder: (context, vm, child) {
-//                       return Row(
-//                         children: [
-//                           IconButton(
-//                             icon: Icon(Icons.home),
-//                             onPressed: () => _finishScreen(context),
-//                           ),
-//                           const SizedBox(width: 32.0),
-//                           Expanded(
-//                             child: Container(
-//                               padding: EdgeInsets.symmetric(vertical: 8),
-//                               decoration: BoxDecoration(
-//                                 color: Colors.black54,
-//                                 borderRadius: BorderRadius.circular(8.0),
-//                               ),
-//                               child: vm.isLoading
-//                                   ? Text('', style: TextStyle(fontSize: 18))
-//                                   : Row(
-//                                       mainAxisSize: MainAxisSize.min,
-//                                       mainAxisAlignment:
-//                                           MainAxisAlignment.center,
-//                                       crossAxisAlignment:
-//                                           CrossAxisAlignment.center,
-//                                       children: [
-//                                         SizedBox(
-//                                           width: 100,
-//                                           child: CupertinoTextField(
-//                                             controller: vm.titleController,
-//                                             style: TextStyle(
-//                                                 color: Colors.black54),
-//                                             maxLines: 1,
-//                                           ),
-//                                         ),
-//                                       ],
-//                                     ),
-//                             ),
-//                           ),
-//                           const SizedBox(width: 32.0),
-//                           IconButton(
-//                             icon: Icon(Icons.save),
-//                             onPressed:
-//                                 vm.isCanSave ? () => _saveScore(context) : null,
-//                           ),
-//                         ],
-//                       );
-//                     },
-//                   ),
-//                 ),
-//                 Expanded(
-//                   child: Center(
-//                     child: SingleChildScrollView(
-//                       child: Container(
-//                         alignment: Alignment.center,
-//                         child: ChordEditPage(),
-//                       ),
-//                     ),
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-//
-//   /// スコアの保存
-//   void _saveScore(BuildContext context) {
-//     DebugLog.add(
-//       label: _label,
-//       className: _className,
-//       name: '_saveScore',
-//     );
-//
-//     final viewModel = context.read<EditViewModel>();
-//
-//     viewModel.format();
-//
-//     showDialog(
-//       context: context,
-//       builder: (_) => ConfirmDialog(
-//         title: '保存しますか？',
-//         onConfirmed: (isConfirmed) async {
-//           if (isConfirmed) {
-//             await viewModel.saveScore();
-//             Navigator.pop(context, viewModel.currentIndex);
-//           }
-//         },
-//       ),
-//     );
-//   }
-//
-//   /// 画面の終了
-//   void _finishScreen(BuildContext context) {
-//     DebugLog.add(
-//       label: _label,
-//       className: _className,
-//       name: '_finishScreen',
-//     );
-//
-//     final viewModel = context.read<EditViewModel>();
-//     final finalIndex = viewModel.currentIndex;
-//     viewModel.setIndex(0);
-//
-//     Navigator.pop(context, finalIndex);
-//   }
-// }
