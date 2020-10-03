@@ -123,6 +123,8 @@ class _EditScreenState extends State<EditScreen> {
                         : SortPage(
                             onCardSelected: (index) =>
                                 _onCardSelected(context, index),
+                            insertChord: (index) =>
+                                _insertChord(context, index),
                           ),
                   ),
                 ),
@@ -197,6 +199,20 @@ class _EditScreenState extends State<EditScreen> {
     setState(() {
       _toggleMode();
     });
+  }
+
+  /// コードを右に挿入する
+  void _insertChord(BuildContext context, int index) {
+    DebugLog.add(
+      label: _label,
+      className: _className,
+      name: '_onCardSelected',
+      args: {'index': index},
+    );
+
+    final viewModel = context.read<EditViewModel>();
+
+    viewModel.insertChordToRight(index);
   }
 }
 

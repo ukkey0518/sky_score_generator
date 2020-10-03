@@ -228,4 +228,16 @@ class EditViewModel extends ChangeNotifier {
     _currentIndex = newIndex;
     notifyListeners();
   }
+
+  void insertChordToRight(int index) {
+    DebugLog.add(
+      label: _label,
+      className: _className,
+      name: 'insertChordToRight',
+      args: {'index': index},
+    );
+
+    _chords.insert(index + 1, Chord.empty());
+    notifyListeners();
+  }
 }
