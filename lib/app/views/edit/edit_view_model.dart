@@ -229,6 +229,7 @@ class EditViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// コードを右に挿入する
   void insertChordToRight(int index) {
     DebugLog.add(
       label: _label,

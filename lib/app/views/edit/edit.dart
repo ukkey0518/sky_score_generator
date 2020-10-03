@@ -1,3 +1,4 @@
+import 'package:animated_size_and_fade/animated_size_and_fade.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
@@ -24,7 +25,7 @@ class EditScreen extends StatefulWidget {
   _EditScreenState createState() => _EditScreenState();
 }
 
-class _EditScreenState extends State<EditScreen> {
+class _EditScreenState extends State<EditScreen> with TickerProviderStateMixin {
   final DebugLabel _label = DebugLabel.VIEW;
   final String _className = 'ListScreen';
 
@@ -115,9 +116,12 @@ class _EditScreenState extends State<EditScreen> {
                 ),
                 const SizedBox(height: 8.0),
                 Expanded(
-                  child: AnimatedContainer(
-                    duration: Duration(seconds: 1),
+                  child: AnimatedSizeAndFade(
+                    vsync: this,
                     alignment: Alignment.center,
+                    fadeDuration: const Duration(milliseconds: 500),
+                    fadeInCurve: Curves.easeInOut,
+                    fadeOutCurve: Curves.easeInOut,
                     child: _isChordEditMode
                         ? ChordEditPage()
                         : SortPage(
