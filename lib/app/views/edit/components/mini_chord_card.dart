@@ -8,6 +8,7 @@ class MiniChordCard extends StatelessWidget {
     @required this.chord,
     @required this.isCurrent,
     @required this.onTap,
+    @required this.onLongPress,
     @required this.onInsertRight,
   });
 
@@ -15,6 +16,7 @@ class MiniChordCard extends StatelessWidget {
   final Chord chord;
   final bool isCurrent;
   final VoidCallback onTap;
+  final VoidCallback onLongPress;
   final VoidCallback onInsertRight;
 
   @override
@@ -27,6 +29,7 @@ class MiniChordCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(8.0),
           child: InkWell(
             onTap: onTap,
+            onLongPress: onLongPress,
             child: Container(
               width: 120,
               padding: EdgeInsets.symmetric(vertical: 8.0),

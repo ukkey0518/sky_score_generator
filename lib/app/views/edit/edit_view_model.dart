@@ -241,4 +241,28 @@ class EditViewModel extends ChangeNotifier {
     _chords.insert(index + 1, Chord.empty());
     notifyListeners();
   }
+
+  /// コードカードを削除
+  void deleteChord(int index) {
+    DebugLog.add(
+      label: _label,
+      className: _className,
+      name: 'deleteChord',
+      args: {'index': index},
+    );
+
+    if (_chords.length >= 2) {
+      _chords.removeAt(index);
+
+      if (_currentIndex >= index) {
+        if (_currentIndex <= 0) {
+          _currentIndex = 0;
+        } else {
+          _currentIndex--;
+        }
+      }
+    }
+
+    notifyListeners();
+  }
 }

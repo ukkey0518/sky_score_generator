@@ -10,12 +10,14 @@ class SortPage extends StatelessWidget {
   SortPage({
     @required this.onCardSelected,
     @required this.insertChord,
+    @required this.deleteChord,
   });
 
   static const DebugLabel _label = DebugLabel.VIEW;
   static const String _className = 'SortPage';
 
   final ValueChanged<int> onCardSelected;
+  final ValueChanged<int> deleteChord;
   final ValueChanged<int> insertChord;
 
   @override
@@ -44,8 +46,9 @@ class SortPage extends StatelessWidget {
                   number: index + 1,
                   chord: vm.chords[index],
                   isCurrent: vm.currentIndex == index,
-                  onInsertRight: () => insertChord(index),
                   onTap: () => onCardSelected(index),
+                  onLongPress: () => deleteChord(index),
+                  onInsertRight: () => insertChord(index),
                 );
               },
             ),

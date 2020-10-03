@@ -130,6 +130,8 @@ class _EditScreenState extends State<EditScreen> with TickerProviderStateMixin {
                         : SortPage(
                             onCardSelected: (index) =>
                                 _onCardSelected(context, index),
+                            deleteChord: (index) =>
+                                _deleteChord(context, index),
                             insertChord: (index) =>
                                 _insertChord(context, index),
                           ),
@@ -220,6 +222,19 @@ class _EditScreenState extends State<EditScreen> with TickerProviderStateMixin {
     final viewModel = context.read<EditViewModel>();
 
     viewModel.insertChordToRight(index);
+  }
+
+  /// コードを削除する
+  void _deleteChord(BuildContext context, int index) {
+    DebugLog.add(
+      label: _label,
+      className: _className,
+      name: '_deleteChord',
+      args: {'index': index},
+    );
+
+    final viewModel = context.read<EditViewModel>();
+    viewModel.deleteChord(index);
   }
 }
 
